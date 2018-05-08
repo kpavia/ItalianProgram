@@ -1,7 +1,6 @@
 irregular_are = ["fare", "andare"]
 irregular_ere = ["avere", "essere", "potere", "volere", "sapere", "bere"]
 irregular_ire = ["uscire", "dire", "venire"]
-isco_verbs = ["capire", "finire", "pulire", "construire", "preferire"]
 mangiare = dict({"verb": "Mangiare", "translation": "to eat"})
 mangiare["presente"] = {"io": "mangio", "tu": "mangi", "lui": "mangia", "lei": "mangia", "noi": "mangiamo",
                         "voi": "mangiate", "loro": "mangiano"}
@@ -10,20 +9,40 @@ mangiare["imperfetto"] = {"io": "mangiavo", "tu": "mangiavi", "lui": "mangiava",
 mangiare["futuro"] = {"io": "mangiero'", "tu": "mangerai", "lui": "mangera'", "lei": "mangera'", "noi": "mangeremo",
                       "voi": "mangerete", "loro": "mangeranno"}
 
-# TODO: move while loop to begin(); while loop in function is buggy
 
 def begin():
-    verb = input("What verb do you want to conjugate?\n")  # verb = mangiare
-    is_verb = verb_ending(verb)  # isverb = are
+    verb = input("What verb do you want to conjugate?\n")
+    is_verb = verb_ending(verb)  # get the verb ending; returns False if not a verb
     if is_verb is False:
         raise ValueError
-    else:
+    else:  # call the conjugating function
         if is_verb == "are":
-            conjugate_are_verb(verb)
+            again = True
+            while again:
+                print("conjugating -are")
+                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                conjugate_are_verb(verb, pronoun)
+                go_again = input("Continue? y/n\n").lower()
+                if go_again != "y":
+                    again = False
         if is_verb == "ere":
-            conjugate_ere_verb(verb)
+            again = True
+            while again:
+                print("conjugating -ere")
+                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                conjugate_ere_verb(verb, pronoun)
+                go_again = input("Continue? y/n\n").lower()
+                if go_again != "y":
+                    again = False
         if is_verb == "ire":
-            conjugate_ire_verb(verb)
+            again = True
+            while again:
+                print("conjugating -ire")
+                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                conjugate_ire_verb(verb, pronoun)
+                go_again = input("Continue? y/n\n").lower()
+                if go_again != "y":
+                    again = False
 
 
 def print_verb_dict(verb):
@@ -50,7 +69,7 @@ def verb_ending(verb):
         raise TypeError
 
 
-def strip_off_ending(verb, tense):
+def strip_off_ending(verb, pronoun):
     """
     Strips the ending (last 3 characters) off the verb
     Parameters: accepts a string
@@ -58,13 +77,14 @@ def strip_off_ending(verb, tense):
     Error handling: checks to make sure parameter is a verb and not just a verb
     Returns an error message if that condition is true
     """
+
     ending = verb_ending(verb)
     if ending is False:
         raise ValueError
     else:
         try:
-            tenses = ["io", "lei", "lui", "voi", "loro"]
-            if verb[-4] == "i" and tense not in tenses:
+            pronouns = ["io", "lei", "lui", "voi", "loro"]
+            if verb[-4] == "i" and pronoun not in pronouns:
                 return verb[:-4]
             else:
                 return verb[:-3]
@@ -72,41 +92,23 @@ def strip_off_ending(verb, tense):
             raise TypeError
 
 
-def conjugate_are_verb(verb):
+def conjugate_are_verb(verb, pronoun):
     """
     Conjugates regular verbs ending in -are.
-    Parameters: accepts a string
+    Parameters: both arguments must be strings
     Return: returns a conjugated verb as a string
     Error handling: checks to see if the verb ends in -are, then checks to see if the verb is irregular
     Returns error message if one of those conditions is true
     """
-# TODO: place all input questions into begin and out of conjugating functions
 
     are_endings = {"io": "o", "tu": "i", "lui": "a", "lei": "a", "noi": "iamo", "voi": "ate", "loro": "ano"}
-    are_verb = verb_ending(verb)
-    if are_verb is False:
-        raise ValueError
-    verb_end = verb_ending(verb)
-    if verb in irregular_are:
-        raise ValueError
-    if verb_end != "are":
-        raise ValueError
-    else:
-        again = True
-        print("starting while loop")
-        while again:
-            tense = input("Which tense? Io, Tu, Lui, Lei, Noi, Voi, Loro?\n").lower()
-            stripped_verb = strip_off_ending(verb, tense)
-            conjugated_verb = stripped_verb + are_endings[tense]
-            print(conjugated_verb)
-            try_again = input("Continue? Y/N?\n").lower()
-            if try_again == "n":
-                new_verb = input("Want a different verb? Y/N\n").lower()
-                if new_verb == "n":
-                    break
+    stripped_verb = strip_off_ending(verb, pronoun)
+    new_verb = stripped_verb + are_endings[pronoun]
+    print(new_verb)
+    return new_verb
 
 
-def conjugate_ere_verb(verb):
+def conjugate_ere_verb(verb, pronoun):
     """
     Conjugates regular verbs ending in -are.
     Parameters: accepts a string
@@ -115,27 +117,13 @@ def conjugate_ere_verb(verb):
     Returns error message if one of those conditions is true
     """
     ere_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ete", "loro": "ono"}
-    ere_verb = verb_ending(verb)
-    if ere_verb is False:
-        raise ValueError
-    verb_end = verb_ending(verb)
-    if verb in irregular_ere:
-        raise ValueError
-    if verb_end != "ere":
-        raise ValueError
-    else:
-        again = True
-        while again:
-            tense = input("Which tense? Io, Tu, Lui, Lei, Noi, Voi, Loro?\n").lower()
-            stripped_verb = strip_off_ending(verb)
-            conjugated_verb = stripped_verb + ere_endings[tense]
-            print(conjugated_verb)
-            try_again = input("Continue? Y/N?\n").lower()
-            if try_again == "n":
-                return "done"
+    stripped_verb = strip_off_ending(verb, pronoun)
+    new_verb = stripped_verb + ere_endings[pronoun]
+    print(new_verb)
+    return new_verb
 
 
-def conjugate_ire_verb(verb):
+def conjugate_ire_verb(verb, pronoun):
     """
     Conjugates regular verbs ending in -are.
     Parameters: accepts a string
@@ -146,34 +134,17 @@ def conjugate_ire_verb(verb):
     ire_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ite", "loro": "ono"}
     isco_endings = {"io": "isco", "tu": "isci", "lui": "isce", "lei": "isce", "noi": "iamo", "voi": "ite",
                     "loro": "iscono"}
-    ire_verb = verb_ending(verb)
-    if ire_verb is False:
-        raise ValueError
-    verb_end = verb_ending(verb)
-    if verb in irregular_ere:
-        raise ValueError
-    if verb_end != "ire":
-        raise ValueError
+    isco_verbs = ["capire", "finire", "pulire", "construire", "preferire"]
     if verb in isco_verbs:
-        again = True
-        while again:
-            tense = input("Which tense? Io, Tu, Lui, Lei, Noi, Voi, Loro?\n").lower()
-            stripped_verb = strip_off_ending(verb)
-            conjugated_verb = stripped_verb + isco_endings[tense]
-            print(conjugated_verb)
-            try_again = input("Continue? Y/N?\n").lower()
-            if try_again == "n":
-                return "done"
+        stripped_verb = strip_off_ending(verb, pronoun)
+        new_verb = stripped_verb + isco_endings[pronoun]
+        print(new_verb)
+        return new_verb
     else:
-        again = True
-        while again:
-            tense = input("Which tense? Io, Tu, Lui, Lei, Noi, Voi, Loro?\n").lower()
-            stripped_verb = strip_off_ending(verb)
-            conjugated_verb = stripped_verb + ire_endings[tense]
-            print(conjugated_verb)
-            try_again = input("Continue? Y/N?\n").lower()
-            if try_again == "n":
-                return "done"
+        stripped_verb = strip_off_ending(verb, pronoun)
+        new_verb = stripped_verb + ire_endings[pronoun]
+        print(new_verb)
+        return new_verb
 
 
 begin()
