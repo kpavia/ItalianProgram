@@ -10,6 +10,7 @@ mangiare["futuro"] = {"io": "mangiero'", "tu": "mangerai", "lui": "mangera'", "l
                       "voi": "mangerete", "loro": "mangeranno"}
 
 # TODO: make functions that quiz on conjugations
+# TODO: address irregular spellings, like with maccare (tu macchi) where program returns tu macci
 
 def begin():
     verb = input("What verb do you want to conjugate?\n")
@@ -135,7 +136,7 @@ def conjugate_ire_verb(verb, pronoun):
     ire_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ite", "loro": "ono"}
     isco_endings = {"io": "isco", "tu": "isci", "lui": "isce", "lei": "isce", "noi": "iamo", "voi": "ite",
                     "loro": "iscono"}
-    isco_verbs = ["capire", "finire", "pulire", "construire", "preferire"]
+    isco_verbs = ["capire", "finire", "pulire", "construire", "preferire", "obedire"]
     if verb in isco_verbs:
         stripped_verb = strip_off_ending(verb, pronoun)
         new_verb = stripped_verb + isco_endings[pronoun]
