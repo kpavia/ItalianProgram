@@ -9,6 +9,7 @@ mangiare["imperfetto"] = {"io": "mangiavo", "tu": "mangiavi", "lui": "mangiava",
 mangiare["futuro"] = {"io": "mangiero'", "tu": "mangerai", "lui": "mangera'", "lei": "mangera'", "noi": "mangeremo",
                       "voi": "mangerete", "loro": "mangeranno"}
 
+# TODO: make functions that quiz on conjugations
 
 def begin():
     verb = input("What verb do you want to conjugate?\n")
@@ -24,7 +25,7 @@ def begin():
                 conjugate_are_verb(verb, pronoun)
                 go_again = input("Continue? y/n\n").lower()
                 if go_again != "y":
-                    again = False
+                    return True
         if is_verb == "ere":
             again = True
             while again:
@@ -33,7 +34,7 @@ def begin():
                 conjugate_ere_verb(verb, pronoun)
                 go_again = input("Continue? y/n\n").lower()
                 if go_again != "y":
-                    again = False
+                    return True
         if is_verb == "ire":
             again = True
             while again:
@@ -42,7 +43,7 @@ def begin():
                 conjugate_ire_verb(verb, pronoun)
                 go_again = input("Continue? y/n\n").lower()
                 if go_again != "y":
-                    again = False
+                    return True
 
 
 def print_verb_dict(verb):
@@ -113,7 +114,7 @@ def conjugate_ere_verb(verb, pronoun):
     Conjugates regular verbs ending in -are.
     Parameters: accepts a string
     Return: returns a conjugated verb as a string
-    Error handling: checks to see if the verb ends in -are, then checks to see if the verb is irregular
+    Error handling: checks to see if the verb ends in -ere, then checks to see if the verb is irregular
     Returns error message if one of those conditions is true
     """
     ere_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ete", "loro": "ono"}
@@ -128,7 +129,7 @@ def conjugate_ire_verb(verb, pronoun):
     Conjugates regular verbs ending in -are.
     Parameters: accepts a string
     Return: returns a conjugated verb as a string
-    Error handling: checks to see if the verb ends in -are, then checks to see if the verb is irregular
+    Error handling: checks to see if the verb ends in -ire, then checks to see if the verb is irregular
     Returns error message if one of those conditions is true
     """
     ire_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ite", "loro": "ono"}
@@ -147,5 +148,10 @@ def conjugate_ire_verb(verb, pronoun):
         return new_verb
 
 
-begin()
-# conjugate_are_verb("mangiare")
+starting = True
+while starting:
+    begin()
+    another = input("Choose another verb? y/n\n").lower()
+    if another == "n":
+        starting = False
+
