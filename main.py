@@ -1,4 +1,4 @@
-irregular_are = ["fare", "andare"]
+
 irregular_ere = ["avere", "essere", "potere", "volere", "sapere", "bere"]
 irregular_ire = ["uscire", "dire", "venire"]
 mangiare = dict({"verb": "Mangiare", "translation": "to eat"})
@@ -10,6 +10,7 @@ mangiare["futuro"] = {"io": "mangiero'", "tu": "mangerai", "lui": "mangera'", "l
                       "voi": "mangerete", "loro": "mangeranno"}
 
 # TODO: make functions that quiz on conjugations
+# TODO: need to conjugate irregular -ere, -ire verbs
 
 def begin():
     verb = input("What verb do you want to conjugate?\n")
@@ -104,6 +105,22 @@ def conjugate_are_verb(verb, pronoun):
 
     are_endings = {"io": "o", "tu": "i", "lui": "a", "lei": "a", "noi": "iamo", "voi": "ate", "loro": "ano"}
     add_h = {"io": "o", "tu": "hi", "lui": "a", "lei": "a", "noi": "hiamo", "voi": "ate", "loro": "ano"}
+    irregular_are = ["fare", "andare"]
+    fare = {"io": "faccio", "tu": "fai", "lei": "fa", "lui": "fa", "noi": "facciamo", "voi": "fate", "loro": "fanno"}
+    andare = {"io": "vado", "tu": "vai", "lui": "va", "lei": "va", "noi": "andiamo", "voi": "andate", "loro": "vanno"}
+
+    # this section checks for the irregular verbs fare, andare
+    if verb in irregular_are:
+        if verb == "fare":
+            print(fare[pronoun])
+            return fare[pronoun]
+        else:
+            print(andare[pronoun])
+            return andare[pronoun]
+
+    # this section checks for spelling issues like with mancare in order to preserve hard "k" sound of infinitive
+    # if it's a verb like mancare then the if section adds an "h" for the spelling to preserve hard "k" sound
+    # if it's a normal -are verb, then the else section conjugates it normally
     if verb[-4] == "c":
         stripped_verb = strip_off_ending(verb, pronoun)
         new_verb = stripped_verb + add_h[pronoun]
