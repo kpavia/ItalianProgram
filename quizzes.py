@@ -47,6 +47,7 @@ def begin():
         another = input("Go again? y/n\n").lower()
         if another != "y":
             go_again = False
+            print("Quiz over.")
         else:
             verb_good = False
 
