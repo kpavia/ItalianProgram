@@ -1,4 +1,5 @@
-import displays
+import functions
+import quizzes
 
 irregular_ere = ["avere", "essere", "potere", "volere", "sapere", "bere"]
 irregular_ire = ["uscire", "dire", "venire"]
@@ -24,3 +25,5 @@ mangiare["futuro"] = {"io": "mangiero'", "tu": "mangerai", "lui": "mangera'", "l
 #         starting = False
 
 # code to start quizzing section
+quizzes.begin()
+

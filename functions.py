@@ -4,38 +4,38 @@ These functions display conjugation endings. No quizzing functionality.
 
 
 def begin():
-    verb = input("What verb do you want to conjugate?\n")
-    is_verb = verb_ending(verb)  # get the verb ending; returns False if not a verb
-    if is_verb is False:
-        raise ValueError
-    else:  # call the conjugating function
-        if is_verb == "are":
-            again = True
-            while again:
-                print("conjugating -are")
-                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
-                conjugate_present_are_verb(verb, pronoun)
-                go_again = input("Continue? y/n\n").lower()
-                if go_again != "y":
-                    return True
-        if is_verb == "ere":
-            again = True
-            while again:
-                print("conjugating -ere")
-                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
-                conjugate_present_ere_verb(verb, pronoun)
-                go_again = input("Continue? y/n\n").lower()
-                if go_again != "y":
-                    return True
-        if is_verb == "ire":
-            again = True
-            while again:
-                print("conjugating -ire")
-                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
-                conjugate_present_ire_verb(verb, pronoun)
-                go_again = input("Continue? y/n\n").lower()
-                if go_again != "y":
-                    return True
+        verb = input("What verb do you want to conjugate?\n")
+        is_verb = verb_ending(verb)  # get the verb ending; returns False if not a verb
+        if is_verb is False:
+            raise ValueError
+        else:  # call the conjugating function
+            if is_verb == "are":
+                again = True
+                while again:
+                    print("conjugating -are")
+                    pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                    conjugate_present_are_verb(verb, pronoun)
+                    go_again = input("Continue? y/n\n").lower()
+                    if go_again != "y":
+                        return True
+            if is_verb == "ere":
+                again = True
+                while again:
+                    print("conjugating -ere")
+                    pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                    conjugate_present_ere_verb(verb, pronoun)
+                    go_again = input("Continue? y/n\n").lower()
+                    if go_again != "y":
+                        return True
+            if is_verb == "ire":
+                again = True
+                while again:
+                    print("conjugating -ire")
+                    pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                    conjugate_present_ire_verb(verb, pronoun)
+                    go_again = input("Continue? y/n\n").lower()
+                    if go_again != "y":
+                        return True
 
 
 def print_verb_dict(verb):
@@ -44,13 +44,31 @@ def print_verb_dict(verb):
         print(f'{keys}: {verb[keys]}')
 
 
+def verb_ending_good(verb):
+    """
+    Returns the last 3 characters of the verb to determine the verb type
+    Verb is passed in as a string
+    Error handling checks to make sure the verb is a string data type and that it's actually a verb
+    and not some other word
+    Returns: a boolean, True if a verb or False if not a verb
+    """
+    try:
+        is_verb = verb[-3:]
+        if is_verb in ["are", "ere", "ire"]:
+            return True
+        else:
+            return False
+    except TypeError:
+        raise TypeError
+
+
 def verb_ending(verb):
     """
     Returns the last 3 characters of the verb to determine the verb type
     Verb is passed in as a string
     Error handling checks to make sure the verb is a string data type and that it's actually a verb
     and not some other word
-    Returns: a boolean False if an error is found
+    Returns: a boolean, True if a verb or False if not a verb
     """
     try:
         is_verb = verb[-3:]
@@ -102,10 +120,10 @@ def conjugate_present_are_verb(verb, pronoun):
     # this section checks for the irregular verbs fare, andare
     if verb in irregular_are:
         if verb == "fare":
-            print(fare[pronoun])
+            # print(fare[pronoun])
             return fare[pronoun]
         else:
-            print(andare[pronoun])
+            # print(andare[pronoun])
             return andare[pronoun]
 
     # this section checks for spelling issues like with mancare in order to preserve hard "k" sound of infinitive
@@ -114,12 +132,12 @@ def conjugate_present_are_verb(verb, pronoun):
     if verb[-4] == "c":
         stripped_verb = strip_off_ending(verb, pronoun)
         new_verb = stripped_verb + add_h[pronoun]
-        print(new_verb)
+        # print(new_verb)
         return new_verb
     else:
         stripped_verb = strip_off_ending(verb, pronoun)
         new_verb = stripped_verb + are_endings[pronoun]
-        print(new_verb)
+        # print(new_verb)
         return new_verb
 
 
