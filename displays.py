@@ -1,6 +1,41 @@
 """
-These are the completed functions. This .py file is temporary while I work on functions and complete them.
+These functions display conjugation endings. No quizzing functionality.
 """
+
+
+def begin():
+    verb = input("What verb do you want to conjugate?\n")
+    is_verb = verb_ending(verb)  # get the verb ending; returns False if not a verb
+    if is_verb is False:
+        raise ValueError
+    else:  # call the conjugating function
+        if is_verb == "are":
+            again = True
+            while again:
+                print("conjugating -are")
+                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                conjugate_present_are_verb(verb, pronoun)
+                go_again = input("Continue? y/n\n").lower()
+                if go_again != "y":
+                    return True
+        if is_verb == "ere":
+            again = True
+            while again:
+                print("conjugating -ere")
+                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                conjugate_present_ere_verb(verb, pronoun)
+                go_again = input("Continue? y/n\n").lower()
+                if go_again != "y":
+                    return True
+        if is_verb == "ire":
+            again = True
+            while again:
+                print("conjugating -ire")
+                pronoun = input("What pronoun? io, tu, lui, lei, noi, voi, loro?\n").lower()
+                conjugate_present_ire_verb(verb, pronoun)
+                go_again = input("Continue? y/n\n").lower()
+                if go_again != "y":
+                    return True
 
 
 def print_verb_dict(verb):
@@ -49,7 +84,7 @@ def strip_off_ending(verb, tense):
             raise TypeError
 
 
-def conjugate_are_verb(verb, pronoun):
+def conjugate_present_are_verb(verb, pronoun):
     """
     Conjugates regular verbs ending in -are.
     Parameters: both arguments must be strings
@@ -88,7 +123,7 @@ def conjugate_are_verb(verb, pronoun):
         return new_verb
 
 
-def conjugate_ere_verb(verb, pronoun):
+def conjugate_present_ere_verb(verb, pronoun):
     """
     Conjugates regular verbs ending in -are.
     Parameters: accepts a string
@@ -103,7 +138,7 @@ def conjugate_ere_verb(verb, pronoun):
     return new_verb
 
 
-def conjugate_ire_verb(verb, pronoun):
+def conjugate_present_ire_verb(verb, pronoun):
     """
     Conjugates regular verbs ending in -are.
     Parameters: accepts a string
@@ -125,3 +160,37 @@ def conjugate_ire_verb(verb, pronoun):
         new_verb = stripped_verb + ire_endings[pronoun]
         print(new_verb)
         return new_verb
+
+
+def display_present_are_endings():
+    """
+    Function just displays present tense -are verb endings.
+    No parameters.
+    Returns nothing
+    """
+    are_endings = {"io": "-o", "tu": "-i", "lui": "-a", "lei": "-a", "noi": "-iamo", "voi": "-ate", "loro": "-ano"}
+    for keys in are_endings:
+        print(f'{keys}: {are_endings[keys]}')
+
+
+def display_present_ere_endings():
+    """
+    Function just displays present tense -ere verb endings.
+    No parameters.
+    Returns nothing
+    """
+    ere_endings = {"io": "-o", "tu": "-i", "lui": "-e", "lei": "-e", "noi": "-iamo", "voi": "-ete", "loro": "-ono"}
+    for keys in ere_endings:
+        print(f'{keys}: {ere_endings[keys]}')
+
+
+def display_present_ire_endings():
+    """
+    Function just displays present tense -ire verb endings.
+    No parameters.
+    Returns nothing
+    """
+    ire_endings = {"io": "-o", "tu": "-i", "lui": "-e", "lei": "-e", "noi": "-iamo", "voi": "-ite", "loro": "-ono"}
+    for keys in ire_endings:
+        print(f'{keys}: {ire_endings[keys]}')
+
