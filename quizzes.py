@@ -7,7 +7,7 @@ verb_options = ["mangiare", "lavorare", "andare", "fare", "caminare", "abandonar
                 "tagliare", "disegnare", "guidare", "spiegare", "trovare", "ritornare", "imparare", "guardare",
                 "organizzare", "pagare", "giocare", "ascoltare", "cantare", "fumare", "parlare"]
 
-# TODO: create logger to record progress (incorrect answers, correct answers, most commen missed ones, etc.)
+# TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
 
 
 def begin_present_quiz():
