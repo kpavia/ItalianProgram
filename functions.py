@@ -104,6 +104,9 @@ def strip_off_ending(verb, pronoun, tense):
             raise TypeError
 
 
+# present tense
+
+
 def conjugate_present_are_verb(verb, pronoun, tense):
     """
     Conjugates regular verbs ending in -are.
@@ -212,6 +215,9 @@ def display_present_ire_endings():
         print(f'{keys}: {ire_endings[keys]}')
 
 
+# imperfect tense
+
+
 def display_imperfect_are_endings():
     are_endings = {"io": "-avo", "tu": "-avi", "lei": "-ava", "lui": "-ava", "noi": "-avamo", "voi": "-avate",
                    "loro": "-avano"}
@@ -266,9 +272,18 @@ def conjugate_imperfect_are_verb(verb, pronoun, tense):
         return new_verb
 
 
-display_imperfect_ire_endings()
+def conjugate_imperfect_ere_verb(verb, pronoun, tense):
+    ere_endings = {"io": "evo", "tu": "evi", "lei": "eva", "lui": "eva", "noi": "evamo", "voi": "evate",
+                   "loro": "evano"}
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + ere_endings[pronoun]
+    return new_verb
 
 
-
-
+def conjugate_imperfect_ire_verb(verb, pronoun, tense):
+    ire_endings = {"io": "-ivo", "tu": "-ivi", "lei": "-iva", "lui": "-iva", "noi": "-ivamo", "voi": "-ivate",
+                   "loro": "-ivano"}
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + ire_endings[pronoun]
+    return new_verb
 
