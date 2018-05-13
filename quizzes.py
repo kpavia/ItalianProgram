@@ -10,7 +10,7 @@ verb_options = ["mangiare", "lavorare", "andare", "fare", "caminare", "abandonar
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
 
 
-def begin_present_quiz():
+def begin_present_are_quiz():
 
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the present tense"
           ".\n")
@@ -46,7 +46,9 @@ def begin_present_quiz():
 
 
 def are_present_quiz(verb, pronoun):
-    return functions.conjugate_present_are_verb(verb, pronoun)
+    return functions.conjugate_present_are_verb(verb, pronoun, "presente")
 
 
-begin_present_quiz()
+
+begin_present_are_quiz()
+

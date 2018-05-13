@@ -140,7 +140,6 @@ def conjugate_present_are_verb(verb, pronoun, tense):
         stripped_verb = strip_off_ending(verb, pronoun, tense)
         new_verb = stripped_verb + are_endings[pronoun]
         # print(new_verb)
-        print(stripped_verb)
         return new_verb
 
 
@@ -213,6 +212,27 @@ def display_present_ire_endings():
         print(f'{keys}: {ire_endings[keys]}')
 
 
+def display_imperfect_are_endings():
+    are_endings = {"io": "-avo", "tu": "-avi", "lei": "-ava", "lui": "-ava", "noi": "-avamo", "voi": "-avate",
+                   "loro": "-avano"}
+    for keys in are_endings:
+        print(f'{keys}: {are_endings[keys]}')
+
+
+def display_imperfect_ere_endings():
+    ere_endings = {"io": "-evo", "tu": "-evi", "lei": "-eva", "lui": "-eva", "noi": "-evamo", "voi": "-evate",
+                   "loro": "-evano"}
+    for keys in ere_endings:
+        print(f'{keys}: {ere_endings[keys]}')
+
+
+def display_imperfect_ire_endings():
+    ire_endings = {"io": "-ivo", "tu": "-ivi", "lei": "-iva", "lui": "-iva", "noi": "-ivamo", "voi": "-ivate",
+                   "loro": "-ivano"}
+    for keys in ire_endings:
+        print(f'{keys}: {ire_endings[keys]}')
+
+
 def conjugate_imperfect_are_verb(verb, pronoun, tense):
     are_endings = {"io": "avo", "tu": "avi", "lui": "ava", "lei": "ava", "noi": "avamo", "voi": "avate", "loro": "avano"}
     add_h = {"io": "o", "tu": "hi", "lui": "a", "lei": "a", "noi": "hiamo", "voi": "ate", "loro": "ano"}
@@ -244,6 +264,9 @@ def conjugate_imperfect_are_verb(verb, pronoun, tense):
         new_verb = stripped_verb + are_endings[pronoun]
         # print(new_verb)
         return new_verb
+
+
+display_imperfect_ire_endings()
 
 
 
