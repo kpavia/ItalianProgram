@@ -287,3 +287,6 @@ def conjugate_imperfect_ire_verb(verb, pronoun, tense):
     new_verb = stripped_verb + ire_endings[pronoun]
     return new_verb
 
+
+# print(conjugate_imperfect_ere_verb("conoscere", "tu", "imperfetto"))
+
