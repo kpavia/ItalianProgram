@@ -18,6 +18,10 @@ ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capi
 
 
 def begin_present_are_quiz():
+    """
+    This function runs the quiz for -are verbs.
+    Verbs are randomly selected from a list.
+    """
 
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the present tense"
           ".\n")
@@ -53,6 +57,11 @@ def begin_present_are_quiz():
 
 
 def begin_present_ere_quiz():
+    """
+    This function runs the quiz for -ere verbs.
+    Verbs are randomly selected from a list.
+    """
+
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the present tense"
           ".\n")
     verb_good = False
@@ -87,6 +96,11 @@ def begin_present_ere_quiz():
 
 
 def begin_present_ire_quiz():
+    """
+    This functions runs the -ire quiz.
+    Verbs are randomly selected from a list.
+    """
+
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the present tense"
           ".\n")
     verb_good = False
@@ -120,19 +134,61 @@ def begin_present_ire_quiz():
             verb_good = False
 
 
+def random_quiz_selector():
+    """
+    This function randomly selects the -are, -ere-, or -ire quiz and once the user decides not to continue, checks to
+    see if the user wants to try andother verb type. If not, then the quiz ends.
+    """
+
+    go_again = True
+    while go_again:
+        number = random.randint(1, 3)
+        print(number)
+        if number == 1:
+            begin_present_are_quiz()
+        if number == 2:
+            begin_present_ere_quiz()
+        if number == 3:
+            begin_present_ire_quiz()
+        again = input("Continue? Y/N\n").lower()
+        if again == "n":
+            go_again = False
+
+
 def are_present_quiz(verb, pronoun):
+    """
+    This function is used by the -are quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
+
     return functions.conjugate_present_are_verb(verb, pronoun, "presente")
 
 
 def ere_present_quiz(verb, pronoun):
+    """
+    This function is used by the -ere quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
     return functions.conjugate_present_ere_verb(verb, pronoun, "presente")
 
 
 def ire_present_quiz(verb, pronoun):
+    """
+    This function is used by the -ire quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
     return functions.conjugate_present_ire_verb(verb, pronoun, "presente")
 
 
 def begin_imperfect_are_quiz():
+    """
+    This function runs the quiz for -are verbs in the imperfect tense.
+    Verbs are randomly selected from a list.
+    """
+
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the imperfect "
           "tense"
           ".\n")
@@ -168,8 +224,14 @@ def begin_imperfect_are_quiz():
 
 
 def are_imperfect_quiz(verb, pronoun):
+    """
+    This function is used by the -are imperfect quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
+
     return functions.conjugate_imperfect_are_verb(verb, pronoun, "imperfetto")
 
 
-begin_present_ire_quiz()
+random_quiz_selector()
 
