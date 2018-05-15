@@ -3,7 +3,7 @@
 These functions display conjugation endings. No quizzing functionality.
 """
 
-# TODO: write futuro, congiuntivo presente, congiuntivo imperfetto, condizionale presente
+# TODO: write congiuntivo presente, congiuntivo imperfetto, condizionale presente
 
 
 def begin():
