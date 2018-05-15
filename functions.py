@@ -2,6 +2,8 @@
 These functions display conjugation endings. No quizzing functionality.
 """
 
+# TODO: write futuro, congiuntivo presente, congiuntivo imperfetto, condizionale presente
+
 
 def begin():
         verb = input("What verb do you want to conjugate?\n")
@@ -289,4 +291,5 @@ def conjugate_imperfect_ire_verb(verb, pronoun, tense):
 
 
 # print(conjugate_imperfect_ere_verb("conoscere", "tu", "imperfetto"))
+# print(conjugate_imperfect_ere_verb("conoscere", "loro", "imperfetto"))
 

@@ -352,4 +352,4 @@ def ire_imperfect_quiz(verb, pronoun):
 
 
 # random_present_quiz_selector()
-begin_imperfect_ere_quiz()
+# begin_imperfect_ere_quiz()
