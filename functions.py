@@ -1,3 +1,4 @@
+
 """
 These functions display conjugation endings. No quizzing functionality.
 """
@@ -96,8 +97,11 @@ def strip_off_ending(verb, pronoun, tense):
     else:
         try:
             pronouns = ["io", "lei", "lui", "voi", "loro"]
-            if verb == "mangiare" and tense == "imperfetto":
-                return verb[:-3]
+            if verb == "mangiare":
+                if tense == "imperfetto":
+                    return verb[:-3]
+                if tense == "futuro":
+                    return verb[:-4]
             if verb[-4] == "i" and pronoun not in pronouns:
                 return verb[:-4]
             else:
@@ -242,8 +246,8 @@ def display_imperfect_ire_endings():
 
 
 def conjugate_imperfect_are_verb(verb, pronoun, tense):
-    are_endings = {"io": "avo", "tu": "avi", "lui": "ava", "lei": "ava", "noi": "avamo", "voi": "avate", "loro": "avano"}
-    add_h = {"io": "o", "tu": "hi", "lui": "a", "lei": "a", "noi": "hiamo", "voi": "ate", "loro": "ano"}
+    are_endings = {"io": "avo", "tu": "avi", "lui": "ava", "lei": "ava", "noi": "avamo", "voi": "avate",
+                   "loro": "avano"}
     irregular_are = ["fare", "andare"]
     fare = {"io": "facevo", "tu": "facevi", "lei": "faceva", "lui": "faceva", "noi": "facevamo", "voi": "facevate",
             "loro": "facevano"}
@@ -262,16 +266,10 @@ def conjugate_imperfect_are_verb(verb, pronoun, tense):
     # this section checks for spelling issues like with mancare in order to preserve hard "k" sound of infinitive
     # if it's a verb like mancare then the if section adds an "h" for the spelling to preserve hard "k" sound
     # if it's a normal -are verb, then the else section conjugates it normally
-    if verb[-4] == "c":
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
-        new_verb = stripped_verb + add_h[pronoun]
-        # print(new_verb)
-        return new_verb
-    else:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
-        new_verb = stripped_verb + are_endings[pronoun]
-        # print(new_verb)
-        return new_verb
+
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + are_endings[pronoun]
+    return new_verb
 
 
 def conjugate_imperfect_ere_verb(verb, pronoun, tense):
@@ -290,6 +288,56 @@ def conjugate_imperfect_ire_verb(verb, pronoun, tense):
     return new_verb
 
 
-# print(conjugate_imperfect_ere_verb("conoscere", "tu", "imperfetto"))
+# future tense
+
+
+def display_future_are_ere_endings():
+    are_endings = {"io": "-erò", "tu": "-erai", "lei": "-erà", "lui": "-erà", "noi": "-eremo", "voi": "-erete",
+                   "loro": "-eranno"}
+    for keys in are_endings:
+        print(f'{keys}: {are_endings[keys]}')
+
+
+def display_future_ire_endings():
+    are_endings = {"io": "-irò", "tu": "-irai", "lei": "-irà", "lui": "-irà", "noi": "-iremo", "voi": "-irete",
+                   "loro": "-iranno"}
+    for keys in are_endings:
+        print(f'{keys}: {are_endings[keys]}')
+
+
+def conjugate_future_are_ere_verb(verb, pronoun, tense):
+    are_endings = {"io": "erò", "tu": "erai", "lei": "erà", "lui": "erà", "noi": "eremo", "voi": "erete",
+                   "loro": "eranno"}
+    irregular_are = ["fare", "andare"]
+    fare = {"io": "farò", "tu": "farai", "lei": "farà", "lui": "farà", "noi": "faremo", "voi": "farete",
+            "loro": "faranno"}
+    andare = {"io": "andrò", "tu": "andrai", "lui": "andrà", "lei": "andrà", "noi": "andremo", "voi": "andrete",
+              "loro": "andranno"}
+
+    # this section checks for the irregular verbs fare, andare
+    if verb in irregular_are:
+        if verb == "fare":
+            return fare[pronoun]
+        else:
+            return andare[pronoun]
+
+    # normal conjugation section
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + are_endings[pronoun]
+    return new_verb
+
+
+def conjugate_future_ire_verb(verb, pronoun, tense):
+    are_endings = {"io": "irò", "tu": "irai", "lei": "irà", "lui": "irà", "noi": "iremo", "voi": "irete",
+                   "loro": "iranno"}
+
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + are_endings[pronoun]
+    return new_verb
+
+
+# print(conjugate_imperfect_are_verb("lavorare", "tu", "imperfetto"))
 # print(conjugate_imperfect_ere_verb("conoscere", "loro", "imperfetto"))
+# print(conjugate_future_are_ere_verb("parlare", "loro", "futuro"))
+print(conjugate_future_ire_verb("finire", "loro", "futuro"))
 
