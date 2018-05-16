@@ -14,7 +14,7 @@ ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capi
 
 
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
-# TODO: fix conoscere present conjugation
+
 
 def random_present_quiz_selector():
     """
@@ -293,6 +293,40 @@ def begin_imperfect_ire_quiz():
             verb_good = False
 
 
+def begin_conditionalpr_ire_quiz():
+    print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the "
+          "conditional present tense.\n")
+    verb_good = False
+    verb = ""
+    pronoun = ""
+    go_again = True
+    while go_again:
+        while not verb_good:
+            verb = random.choice(ire_verb_options)
+            checker = functions.verb_ending_good(verb)
+            if checker is True:
+                verb_good = True
+        pronoun_good = False
+        while not pronoun_good:
+            pronoun = random.choice(pronouns)
+            if pronoun in pronouns:
+                pronoun_good = True
+        ending = functions.verb_ending(verb)
+        if ending == "ire":
+            answer = ire_conditionalpr_quiz(verb, pronoun)
+            checker = input(f'Tense: Condizionale \nVerb: {verb} \nPronoun: {pronoun}...\n')
+            if answer == checker:
+                print("Correct!")
+            else:
+                print(f'Incorrect.\nCorrect answer is {answer}')
+        another = input("Go again? y/n\n").lower()
+        if another != "y":
+            go_again = False
+            print("Quiz over.")
+        else:
+            verb_good = False
+
+
 def are_present_quiz(verb, pronoun):
     """
     This function is used by the -are quiz function to call the conjugation functions from functions.py
@@ -351,5 +385,14 @@ def ire_imperfect_quiz(verb, pronoun):
     return functions.conjugate_imperfect_ire_verb(verb, pronoun, "imperfetto")
 
 
+def are_ere_conditionalpr_quiz(verb, pronoun):
+    return functions.conjugate_conditionalpr_are_ere_verb(verb, pronoun, "condizionale")
+
+
+def ire_conditionalpr_quiz(verb, pronoun):
+    return functions.conjugate_conditionalpr_ire_verb(verb, pronoun, "condizionale")
+
+
 # random_present_quiz_selector()
 # begin_imperfect_ere_quiz()
+begin_conditionalpr_ire_quiz()
