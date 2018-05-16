@@ -292,10 +292,10 @@ def conjugate_imperfect_ire_verb(verb, pronoun, tense):
 
 
 def display_future_are_ere_endings():
-    are_endings = {"io": "-erò", "tu": "-erai", "lei": "-erà", "lui": "-erà", "noi": "-eremo", "voi": "-erete",
-                   "loro": "-eranno"}
-    for keys in are_endings:
-        print(f'{keys}: {are_endings[keys]}')
+    endings = {"io": "-erò", "tu": "-erai", "lei": "-erà", "lui": "-erà", "noi": "-eremo", "voi": "-erete",
+               "loro": "-eranno"}
+    for keys in endings:
+        print(f'{keys}: {endings[keys]}')
 
 
 def display_future_ire_endings():
@@ -336,8 +336,26 @@ def conjugate_future_ire_verb(verb, pronoun, tense):
     return new_verb
 
 
+# conditional present
+
+
+def display_conditionalpr_are_ere_verb():
+    endings = {"io": "-erei", "tu": "-eresti", "lei": "-erebbe", "lui": "-erebbe", "noi": "-eremmo", "voi": "-ereste",
+               "loro": "-erebbero"}
+    for keys in endings:
+        print(f'{keys}: {endings[keys]}')
+
+
+def display_conditionalpr_ire_verb():
+    endings = {"io": "-irei", "tu": "-iresti", "lei": "-irebbe", "lui": "-irebbe", "noi": "-iremmo", "voi": "-ireste",
+               "loro": "-irebbero"}
+    for keys in endings:
+        print(f'{keys}: {endings[keys]}')
+
+
 # print(conjugate_imperfect_are_verb("lavorare", "tu", "imperfetto"))
 # print(conjugate_imperfect_ere_verb("conoscere", "loro", "imperfetto"))
 # print(conjugate_future_are_ere_verb("parlare", "loro", "futuro"))
-print(conjugate_future_ire_verb("finire", "loro", "futuro"))
+# print(conjugate_future_ire_verb("finire", "loro", "futuro"))
+
 
