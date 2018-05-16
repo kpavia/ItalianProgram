@@ -8,9 +8,9 @@ are_verb_options = ["mangiare", "lavorare", "andare", "fare", "caminare", "aband
                     "guardare", "organizzare", "pagare", "giocare", "ascoltare", "cantare", "fumare", "parlare",
                     "chiamare", "pensare"]
 ere_verb_options = ["scrivere", "leggere", "prendere", "chiedere", "decidere", "conoscere", "mettere", "vincere",
-                    "perdere", "credere"]
+                    "perdere", "credere", "sedere"]
 ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capire", "offrire", "seguire", "construire",
-                    "aprire"]
+                    "aprire", "sentire", "uscire", "salire"]
 
 
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
@@ -395,4 +395,4 @@ def ire_conditionalpr_quiz(verb, pronoun):
 
 # random_present_quiz_selector()
 # begin_imperfect_ere_quiz()
-begin_conditionalpr_ire_quiz()
+# begin_conditionalpr_ire_quiz()
