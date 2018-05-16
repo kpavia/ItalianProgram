@@ -405,5 +405,5 @@ def conjugate_conditionalpr_ire_verb(verb, pronoun, tense):
 # print(conjugate_imperfect_ere_verb("conoscere", "loro", "imperfetto"))
 # print(conjugate_future_are_ere_verb("parlare", "loro", "futuro"))
 # print(conjugate_future_ire_verb("finire", "loro", "futuro"))
-print(conjugate_conditionalpr_are_ere_verb("leggere", "io", "condizionale"))
+# print(conjugate_conditionalpr_are_ere_verb("leggere", "io", "condizionale"))
 
