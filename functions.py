@@ -102,6 +102,8 @@ def strip_off_ending(verb, pronoun, tense):
                     return verb[:-3]
                 if tense == "futuro":
                     return verb[:-4]
+                if tense == "condizionale":
+                    return verb[:-4]
             if verb[-4] == "i" and pronoun not in pronouns:
                 return verb[:-4]
             else:
@@ -306,7 +308,7 @@ def display_future_ire_endings():
 
 
 def conjugate_future_are_ere_verb(verb, pronoun, tense):
-    are_endings = {"io": "erò", "tu": "erai", "lei": "erà", "lui": "erà", "noi": "eremo", "voi": "erete",
+    endings = {"io": "erò", "tu": "erai", "lei": "erà", "lui": "erà", "noi": "eremo", "voi": "erete",
                    "loro": "eranno"}
     irregular_are = ["fare", "andare"]
     fare = {"io": "farò", "tu": "farai", "lei": "farà", "lui": "farà", "noi": "faremo", "voi": "farete",
@@ -323,16 +325,16 @@ def conjugate_future_are_ere_verb(verb, pronoun, tense):
 
     # normal conjugation section
     stripped_verb = strip_off_ending(verb, pronoun, tense)
-    new_verb = stripped_verb + are_endings[pronoun]
+    new_verb = stripped_verb + endings[pronoun]
     return new_verb
 
 
 def conjugate_future_ire_verb(verb, pronoun, tense):
-    are_endings = {"io": "irò", "tu": "irai", "lei": "irà", "lui": "irà", "noi": "iremo", "voi": "irete",
+    ire_endings = {"io": "irò", "tu": "irai", "lei": "irà", "lui": "irà", "noi": "iremo", "voi": "irete",
                    "loro": "iranno"}
 
     stripped_verb = strip_off_ending(verb, pronoun, tense)
-    new_verb = stripped_verb + are_endings[pronoun]
+    new_verb = stripped_verb + ire_endings[pronoun]
     return new_verb
 
 
@@ -353,9 +355,55 @@ def display_conditionalpr_ire_verb():
         print(f'{keys}: {endings[keys]}')
 
 
+def conjugate_conditionalpr_are_ere_verb(verb, pronoun, tense):
+    """
+    This function conjugates -are, -ere verbs in the conditional present tense.
+    Parameters: accepts all parameters as strings.
+    Returns: returns strings
+    """
+    if verb[-3:] != "are" and verb[-3:] != "ere":
+        raise ValueError
+    endings = {"io": "erei", "tu": "eresti", "lei": "erebbe", "lui": "erebbe", "noi": "eremmo", "voi": "ereste",
+               "loro": "erebbero"}
+    irregular_are = ["fare", "andare"]
+    fare = {"io": "farei", "tu": "faresti", "lei": "farebbe", "lui": "farebbe", "noi": "faremmo", "voi": "fareste",
+            "loro": "farebbero"}
+    andare = {"io": "andrei", "tu": "andresti", "lui": "andresti", "lei": "andresti", "noi": "andremmo",
+              "voi": "andreste", "loro": "andrebbero"}
+
+    # this section checks for the irregular verbs fare, andare
+    if verb in irregular_are:
+        if verb == "fare":
+            return fare[pronoun]
+        else:
+            return andare[pronoun]
+
+    # normal conjugation section
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + endings[pronoun]
+    return new_verb
+
+
+def conjugate_conditionalpr_ire_verb(verb, pronoun, tense):
+    """
+    This function conjugates -ire verbs in the conditional present tense.
+    Parameter: verb - string, pronoun - string, tense - string.
+    Returns: a string
+    """
+
+    if verb[-3:] != "ire":
+        raise ValueError
+    ire_endings = {"io": "irei", "tu": "iresti", "lei": "irebbe", "lui": "irebbe", "noi": "iremmo", "voi": "ireste",
+                   "loro": "irebbero"}
+
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + ire_endings[pronoun]
+    return new_verb
+
+
 # print(conjugate_imperfect_are_verb("lavorare", "tu", "imperfetto"))
 # print(conjugate_imperfect_ere_verb("conoscere", "loro", "imperfetto"))
 # print(conjugate_future_are_ere_verb("parlare", "loro", "futuro"))
 # print(conjugate_future_ire_verb("finire", "loro", "futuro"))
-
+print(conjugate_conditionalpr_are_ere_verb("leggere", "io", "condizionale"))
 
