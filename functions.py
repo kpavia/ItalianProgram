@@ -3,7 +3,7 @@
 These functions display conjugation endings. No quizzing functionality.
 """
 
-# TODO: write congiuntivo presente, congiuntivo imperfetto
+# TODO: write congiuntivo imperfetto
 # TODO: irregular verbs to fix: uscire, sedere
 # TODO: do all error handling in beginning of functions
 
@@ -108,6 +108,8 @@ def strip_off_ending(verb, pronoun, tense):
                     return verb[:-4]
                 if tense == "congiuntivopr":
                     return verb[:-4]
+                if tense == "congiuntivoimp":
+                    return verb[:-3]
             if verb[-4] == "i" and pronoun not in pronouns:
                 return verb[:-4]
             else:
@@ -477,6 +479,75 @@ def conjugate_conjunctivepr_ere_verb(verb, pronoun, tense):
     return new_verb
 
 
+# imperfect conjunctive tense
+
+
+def display_conjunctiveimp_are_verb():
+    endings = {"io": "-assi", "tu": "-assi", "lei": "-asse", "lui": "-asse", "noi": "-assimo", "voi": "-aste",
+               "loro": "-assero"}
+    for keys in endings:
+        print(f'{keys}: {endings[keys]}')
+
+
+def display_conjunctiveimp_ere_verb():
+    endings = {"io": "-essi", "tu": "-essi", "lei": "-esse", "lui": "-esse", "noi": "-essimo", "voi": "-este",
+               "loro": "-essero"}
+    for keys in endings:
+        print(f'{keys}: {endings[keys]}')
+
+
+def display_conjunctiveimp_ire_verb():
+    endings = {"io": "-issi", "tu": "-issi", "lei": "-isse", "lui": "-isse", "noi": "-issimo", "voi": "-iste",
+               "loro": "-issero"}
+    for keys in endings:
+        print(f'{keys}: {endings[keys]}')
+
+
+def conjugate_conjunctiveimp_are_verb(verb, pronoun, tense):
+    are_endings = {"io": "assi", "tu": "assi", "lui": "asse", "lei": "asse", "noi": "assimo", "voi": "aste",
+                   "loro": "assero"}
+    irregular_are = ["fare"]
+    fare = {"io": "facessi", "tu": "facessi", "lei": "facesse", "lui": "facesse", "noi": "facessimo", "voi": "faceste",
+            "loro": "facessero"}
+
+    # this section checks for the irregular verbs fare, andare
+    if verb in irregular_are:
+        if verb == "fare":
+            return fare[pronoun]
+
+    # this section checks for spelling issues like with mancare in order to preserve hard "k" sound of infinitive
+    # if it's a verb like mancare then the if section adds an "h" for the spelling to preserve hard "k" sound
+    # if it's a normal -are verb, then the else section conjugates it normally
+
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + are_endings[pronoun]
+    return new_verb
+
+
+def conjugate_conjunctiveimp_ere_verb(verb, pronoun, tense):
+    if verb[-3:] != "ere":
+        raise ValueError
+
+    ere_endings = {"io": "essi", "tu": "essi", "lei": "esse", "lui": "esse", "noi": "essimo", "voi": "este",
+                   "loro": "essero"}
+
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + ere_endings[pronoun]
+    return new_verb
+
+
+def conjugate_conjunctiveimp_ire_verb(verb, pronoun, tense):
+    if verb[-3:] != "ire":
+        raise ValueError
+
+    ere_endings = {"io": "issi", "tu": "issi", "lei": "isse", "lui": "isse", "noi": "issimo", "voi": "iste",
+                   "loro": "issero"}
+
+    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    new_verb = stripped_verb + ere_endings[pronoun]
+    return new_verb
+
+
 # print(conjugate_present_ere_verb("sedere", "io", "presente"))
 # print(conjugate_imperfect_are_verb("lavorare", "tu", "imperfetto"))
 # print(conjugate_imperfect_ere_verb("conoscere", "loro", "imperfetto"))
@@ -484,6 +555,6 @@ def conjugate_conjunctivepr_ere_verb(verb, pronoun, tense):
 # print(conjugate_future_ire_verb("finire", "loro", "futuro"))
 # print(conjugate_conditionalpr_are_ere_verb("leggere", "io", "condizionale"))
 # print(conjugate_conjunctivepr_ire_verb("sentire", "tu", "congiuntivo"))
-print(conjugate_conjunctivepr_ere_verb("scrivere", "loro", "congiuntivopr"))
+print(conjugate_conjunctiveimp_ire_verb("capire", "io", "congiuntivoimp"))
 
 
