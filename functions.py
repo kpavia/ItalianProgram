@@ -3,8 +3,7 @@
 These functions display conjugation endings. No quizzing functionality.
 """
 
-# TODO: write congiuntivo imperfetto
-# TODO: irregular verbs to fix: uscire, sedere
+# TODO: irregular verbs to fix: uscire, sedere, avere (check all tenses)
 # TODO: do all error handling in beginning of functions
 
 
@@ -162,7 +161,7 @@ def conjugate_present_are_verb(verb, pronoun, tense):
 
 def conjugate_present_ere_verb(verb, pronoun, tense):
     """
-    Conjugates regular verbs ending in -are.
+    Conjugates regular verbs ending in -ere.
     Parameters: accepts a string
     Return: returns a conjugated verb as a string
     Error handling: checks to see if the verb ends in -ere, then checks to see if the verb is irregular
@@ -525,11 +524,17 @@ def conjugate_conjunctiveimp_are_verb(verb, pronoun, tense):
 
 
 def conjugate_conjunctiveimp_ere_verb(verb, pronoun, tense):
-    if verb[-3:] != "ere":
-        raise ValueError
-
     ere_endings = {"io": "essi", "tu": "essi", "lei": "esse", "lui": "esse", "noi": "essimo", "voi": "este",
                    "loro": "essero"}
+    irregular_verb = ["essere"]
+    essere = {"io": "fossi", "tu": "fossi", "lei": "fosse", "lui": "fosse", "noi": "fossimo", "voi": "foste",
+              "loro": "fossero"}
+
+    if verb[-3:] != "ere":
+        raise ValueError
+    if verb in irregular_verb:
+        if verb == "essere":
+            return essere[pronoun]
 
     stripped_verb = strip_off_ending(verb, pronoun, tense)
     new_verb = stripped_verb + ere_endings[pronoun]
@@ -555,6 +560,5 @@ def conjugate_conjunctiveimp_ire_verb(verb, pronoun, tense):
 # print(conjugate_future_ire_verb("finire", "loro", "futuro"))
 # print(conjugate_conditionalpr_are_ere_verb("leggere", "io", "condizionale"))
 # print(conjugate_conjunctivepr_ire_verb("sentire", "tu", "congiuntivo"))
-print(conjugate_conjunctiveimp_ire_verb("capire", "io", "congiuntivoimp"))
-
+print(conjugate_conjunctiveimp_ere_verb("avere", "loro", "congiuntivoimp"))
 
