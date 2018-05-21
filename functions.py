@@ -167,6 +167,13 @@ def conjugate_present_ere_verb(verb, pronoun, tense):
     Error handling: checks to see if the verb ends in -ere, then checks to see if the verb is irregular
     Returns error message if one of those conditions is true
     """
+    avere = {"io": "ho", "tu": "hai", "lui": "ha", "lei": "ha", "noi": "abbiamo", "voi": "avete", "loro": "hanno"}
+
+    irregulars = ["avere"]
+    if verb in irregulars:
+        if verb == "avere":
+            return avere[pronoun]
+
     ere_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ete", "loro": "ono"}
     stripped_verb = strip_off_ending(verb, pronoun, tense)
     new_verb = stripped_verb + ere_endings[pronoun]
@@ -553,12 +560,12 @@ def conjugate_conjunctiveimp_ire_verb(verb, pronoun, tense):
     return new_verb
 
 
-# print(conjugate_present_ere_verb("sedere", "io", "presente"))
+print(conjugate_present_ere_verb("avere", "io", "presente"))
 # print(conjugate_imperfect_are_verb("lavorare", "tu", "imperfetto"))
 # print(conjugate_imperfect_ere_verb("conoscere", "loro", "imperfetto"))
 # print(conjugate_future_are_ere_verb("parlare", "loro", "futuro"))
 # print(conjugate_future_ire_verb("finire", "loro", "futuro"))
 # print(conjugate_conditionalpr_are_ere_verb("leggere", "io", "condizionale"))
 # print(conjugate_conjunctivepr_ire_verb("sentire", "tu", "congiuntivo"))
-print(conjugate_conjunctiveimp_ere_verb("avere", "loro", "congiuntivoimp"))
+# print(conjugate_conjunctiveimp_ere_verb("avere", "loro", "congiuntivoimp"))
 
