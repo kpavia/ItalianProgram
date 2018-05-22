@@ -1,5 +1,6 @@
 import functions
 import quizzes
+import requests
 
 irregular_ere = ["avere", "essere", "potere", "volere", "sapere", "bere"]
 irregular_ire = ["uscire", "dire", "venire"]
@@ -10,6 +11,10 @@ mangiare["imperfetto"] = {"io": "mangiavo", "tu": "mangiavi", "lui": "mangiava",
                           "voi": "mangiavate", "loro": "mangiavano"}
 mangiare["futuro"] = {"io": "mangiero'", "tu": "mangerai", "lui": "mangera'", "lei": "mangera'", "noi": "mangeremo",
                       "voi": "mangerete", "loro": "mangeranno"}
+
+api_key = "PVj9iCBg4ec50k9ecMQyrtMdSoTWHCSGljxzOyQLwjZZXRAOp9VnmEwuAsrWUIt7"
+italian_english_url = "http://api.collinsdictionary.com/api/v1/dictionaries/italian-english/"
+english_italian_url = "http://api.collinsdictionary.com/api/v1/dictionaries/english-italian/"
 
 # TODO: make functions that quiz on conjugations
 # TODO: need to conjugate irregular -ere, -ire verbs
@@ -25,5 +30,9 @@ mangiare["futuro"] = {"io": "mangiero'", "tu": "mangerai", "lui": "mangera'", "l
 #         starting = False
 
 # code to start quizzing section
-quizzes.begin()
+# quizzes.begin()
+
+request = requests.get()
+
+
 
