@@ -119,6 +119,30 @@ def strip_off_ending(verb, pronoun, tense):
 
 # present tense
 
+def create_verb_file(verb, tense):
+    pronouns = ["io", "tu", "lui", "lei", "noi", "voi", "loro"]
+    are_endings = {"io": "o", "tu": "i", "lui": "a", "lei": "a", "noi": "iamo", "voi": "ate", "loro": "ano"}
+    add_h = {"io": "o", "tu": "hi", "lui": "a", "lei": "a", "noi": "hiamo", "voi": "ate", "loro": "ano"}
+    irregular_are = ["fare", "andare"]
+    fare = {"io": "faccio", "tu": "fai", "lei": "fa", "lui": "fa", "noi": "facciamo", "voi": "fate", "loro": "fanno"}
+    andare = {"io": "vado", "tu": "vai", "lui": "va", "lei": "va", "noi": "andiamo", "voi": "andate", "loro": "vanno"}
+
+    if tense == "presente":
+        stripped_verb = strip_off_ending(verb, "io", tense)
+        verb_file = open(f'{verb}.txt', "w")
+        verb_file.write(f'{verb} Present Tense\n')
+        if verb in irregular_are:
+            if verb == "fare":
+                for pronoun in fare:
+                    new_verb = fare[pronoun]
+                    verb_file.write(f'{pronoun}: {new_verb}\n')
+        else:
+            for pronoun in are_endings:
+                new_verb = stripped_verb + are_endings[pronoun]
+                verb_file.write(f'{pronoun} {new_verb}\n')
+                print(f'{new_verb} recorded.')
+        verb_file.close()
+
 
 def conjugate_present_are_verb(verb, pronoun, tense):
     """
@@ -560,7 +584,7 @@ def conjugate_conjunctiveimp_ire_verb(verb, pronoun, tense):
     return new_verb
 
 
-print(conjugate_present_ere_verb("avere", "io", "presente"))
+# print(conjugate_present_ere_verb("avere", "io", "presente"))
 # print(conjugate_imperfect_are_verb("lavorare", "tu", "imperfetto"))
 # print(conjugate_imperfect_ere_verb("conoscere", "loro", "imperfetto"))
 # print(conjugate_future_are_ere_verb("parlare", "loro", "futuro"))

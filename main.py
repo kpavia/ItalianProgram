@@ -9,7 +9,7 @@ mangiare["presente"] = {"io": "mangio", "tu": "mangi", "lui": "mangia", "lei": "
                         "voi": "mangiate", "loro": "mangiano"}
 mangiare["imperfetto"] = {"io": "mangiavo", "tu": "mangiavi", "lui": "mangiava", "lei": "mangiava", "noi": "mangiavamo",
                           "voi": "mangiavate", "loro": "mangiavano"}
-mangiare["futuro"] = {"io": "mangiero'", "tu": "mangerai", "lui": "mangera'", "lei": "mangera'", "noi": "mangeremo",
+mangiare["futuro"] = {"io": "mangierò", "tu": "mangerai", "lui": "mangerà", "lei": "mangerà", "noi": "mangeremo",
                       "voi": "mangerete", "loro": "mangeranno"}
 
 api_key = "PVj9iCBg4ec50k9ecMQyrtMdSoTWHCSGljxzOyQLwjZZXRAOp9VnmEwuAsrWUIt7"
@@ -32,7 +32,8 @@ english_italian_url = "http://api.collinsdictionary.com/api/v1/dictionaries/engl
 # code to start quizzing section
 # quizzes.begin()
 
-request = requests.get()
+# verb_file = open("lavorare.txt", "w")
+# verb_file.write(functions.create_verb_dict("lavorare", "presente"))
+# verb_file.close()
 
-
-
+functions.create_verb_file("fare", "presente")
