@@ -36,4 +36,4 @@ english_italian_url = "http://api.collinsdictionary.com/api/v1/dictionaries/engl
 # verb_file.write(functions.create_verb_dict("lavorare", "presente"))
 # verb_file.close()
 
-functions.create_verb_file("fare", "presente")
+# functions.create_verb_file("fare", "presente")

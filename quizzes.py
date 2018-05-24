@@ -14,12 +14,13 @@ ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capi
 
 
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
+# TODO: create future tense quiz
 
 
 def random_present_quiz_selector():
     """
     This function randomly selects the -are, -ere-, or -ire quiz and once the user decides not to continue, checks to
-    see if the user wants to try andother verb type. If not, then the quiz ends.
+    see if the user wants to try another verb type. If not, then the quiz ends.
     """
 
     go_again = True
@@ -327,6 +328,41 @@ def begin_conditionalpr_ire_quiz():
             verb_good = False
 
 
+def begin_congiuntivoimp_are_quiz():
+    print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the imperfect "
+          "subjunctive tense"
+          ".\n")
+    verb_good = False
+    verb = ""
+    pronoun = ""
+    go_again = True
+    while go_again:
+        while not verb_good:
+            verb = random.choice(are_verb_options)
+            checker = functions.verb_ending_good(verb)
+            if checker is True:
+                verb_good = True
+        pronoun_good = False
+        while not pronoun_good:
+            pronoun = random.choice(pronouns)
+            if pronoun in pronouns:
+                pronoun_good = True
+        ending = functions.verb_ending(verb)
+        if ending == "are":
+            answer = are_congiuntivoimp_quiz(verb, pronoun)
+            checker = input(f'Tense: Congiuntivo Imperfetto \nVerb: {verb} \nPronoun: {pronoun}...\n')
+            if answer == checker:
+                print("Correct!")
+            else:
+                print(f'Incorrect.\nCorrect answer is {answer}')
+        another = input("Go again? y/n\n").lower()
+        if another != "y":
+            go_again = False
+            print("Quiz over.")
+        else:
+            verb_good = False
+
+
 def are_present_quiz(verb, pronoun):
     """
     This function is used by the -are quiz function to call the conjugation functions from functions.py
@@ -393,6 +429,12 @@ def ire_conditionalpr_quiz(verb, pronoun):
     return functions.conjugate_conditionalpr_ire_verb(verb, pronoun, "condizionale")
 
 
+def are_congiuntivoimp_quiz(verb, pronoun):
+    return functions.conjugate_conjunctiveimp_are_verb(verb, pronoun, "congiuntivo")
+
+
 # random_present_quiz_selector()
 # begin_imperfect_ere_quiz()
 # begin_conditionalpr_ire_quiz()
+begin_congiuntivoimp_are_quiz()
+
