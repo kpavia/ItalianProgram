@@ -174,12 +174,10 @@ def conjugate_present_are_verb(verb, pronoun, tense):
     if verb[-4] == "c":
         stripped_verb = strip_off_ending(verb, pronoun, tense)
         new_verb = stripped_verb + add_h[pronoun]
-        # print(new_verb)
         return new_verb
     else:
         stripped_verb = strip_off_ending(verb, pronoun, tense)
         new_verb = stripped_verb + are_endings[pronoun]
-        # print(new_verb)
         return new_verb
 
 
@@ -343,8 +341,10 @@ def display_future_ire_endings():
 
 def conjugate_future_are_ere_verb(verb, pronoun, tense):
     endings = {"io": "erò", "tu": "erai", "lei": "erà", "lui": "erà", "noi": "eremo", "voi": "erete",
-                   "loro": "eranno"}
+               "loro": "eranno"}
     irregular_are = ["fare", "andare"]
+    add_h = {"io": "herò", "tu": "herai", "lui": "herà", "lei": "herà", "noi": "heremo", "voi": "herete",
+             "loro": "heranno"}
     fare = {"io": "farò", "tu": "farai", "lei": "farà", "lui": "farà", "noi": "faremo", "voi": "farete",
             "loro": "faranno"}
     andare = {"io": "andrò", "tu": "andrai", "lui": "andrà", "lei": "andrà", "noi": "andremo", "voi": "andrete",
@@ -358,9 +358,14 @@ def conjugate_future_are_ere_verb(verb, pronoun, tense):
             return andare[pronoun]
 
     # normal conjugation section
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
-    new_verb = stripped_verb + endings[pronoun]
-    return new_verb
+    if verb[-4] == "c":
+        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        new_verb = stripped_verb + add_h[pronoun]
+        return new_verb
+    else:
+        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        new_verb = stripped_verb + endings[pronoun]
+        return new_verb
 
 
 def conjugate_future_ire_verb(verb, pronoun, tense):
@@ -592,4 +597,5 @@ def conjugate_conjunctiveimp_ire_verb(verb, pronoun, tense):
 # print(conjugate_conditionalpr_are_ere_verb("leggere", "io", "condizionale"))
 # print(conjugate_conjunctivepr_ire_verb("sentire", "tu", "congiuntivo"))
 # print(conjugate_conjunctiveimp_ere_verb("avere", "loro", "congiuntivoimp"))
+# print(conjugate_future_are_ere_verb("giocare", "loro", "futuro"))
 
