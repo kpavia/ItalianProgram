@@ -17,6 +17,9 @@ ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capi
 # TODO: create future tense quiz
 
 
+# random quizzes
+
+
 def random_present_quiz_selector():
     """
     This function randomly selects the -are, -ere-, or -ire quiz and once the user decides not to continue, checks to
@@ -55,6 +58,9 @@ def random_imperfect_quiz_selector():
         again = input("Continue? Y/N\n").lower()
         if again == "n":
             go_again = False
+
+
+# quiz functions
 
 
 def begin_present_are_quiz():
@@ -328,6 +334,41 @@ def begin_conditionalpr_ire_quiz():
             verb_good = False
 
 
+def begin_conditionalpr_are_ere_quiz():
+    print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the "
+          "present conditional tense"
+          ".\n")
+    verb_good = False
+    verb = ""
+    pronoun = ""
+    go_again = True
+    while go_again:
+        while not verb_good:
+            verb = random.choice(are_verb_options)
+            checker = functions.verb_ending_good(verb)
+            if checker is True:
+                verb_good = True
+        pronoun_good = False
+        while not pronoun_good:
+            pronoun = random.choice(pronouns)
+            if pronoun in pronouns:
+                pronoun_good = True
+        ending = functions.verb_ending(verb)
+        if ending == "are":
+            answer = are_ere_conditionalpr_quiz(verb, pronoun)
+            checker = input(f'Tense: Condizionale Presente \nVerb: {verb} \nPronoun: {pronoun}...\n')
+            if answer == checker:
+                print("Correct!")
+            else:
+                print(f'Incorrect.\nCorrect answer is {answer}')
+        another = input("Go again? y/n\n").lower()
+        if another != "y":
+            go_again = False
+            print("Quiz over.")
+        else:
+            verb_good = False
+
+
 def begin_congiuntivoimp_are_quiz():
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the imperfect "
           "subjunctive tense"
@@ -442,6 +483,9 @@ def begin_future_ire_quiz():
             verb_good = False
 
 
+# functions that call conjugating functions
+
+
 def are_present_quiz(verb, pronoun):
     """
     This function is used by the -are quiz function to call the conjugation functions from functions.py
@@ -519,10 +563,3 @@ def are_ere_future_quiz(verb, pronoun):
 def ire_future_quiz(verb, pronoun):
     return functions.conjugate_future_ire_verb(verb, pronoun, "futuro")
 
-
-# random_present_quiz_selector()
-# begin_imperfect_ere_quiz()
-# begin_conditionalpr_ire_quiz()
-# begin_congiuntivoimp_are_quiz()
-# begin_future_are_ere_quiz()
-# begin_future_ire_quiz()
