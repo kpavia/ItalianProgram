@@ -14,8 +14,8 @@ ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capi
 
 
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
-# TODO: create future tense quiz
-
+# TODO: create complete random quizzes for all tenses
+# TODO: update -are, -ere combined quizzes to select from both -are, -ere verbs
 
 # random quizzes
 
@@ -65,7 +65,7 @@ def random_imperfect_quiz_selector():
 
 def begin_present_are_quiz():
     """
-    This function runs the quiz for -are verbs.
+    This function runs the present tense quiz for -are verbs.
     Verbs are randomly selected from a list.
     """
 
@@ -104,7 +104,7 @@ def begin_present_are_quiz():
 
 def begin_present_ere_quiz():
     """
-    This function runs the quiz for -ere verbs.
+    This function runs the present tense quiz for -ere verbs.
     Verbs are randomly selected from a list.
     """
 
@@ -143,7 +143,7 @@ def begin_present_ere_quiz():
 
 def begin_present_ire_quiz():
     """
-    This functions runs the -ire quiz.
+    This functions runs the present tense -ire quiz.
     Verbs are randomly selected from a list.
     """
 
@@ -301,6 +301,11 @@ def begin_imperfect_ire_quiz():
 
 
 def begin_conditionalpr_ire_quiz():
+    """
+    This runs the present conditional quiz for -ire verbs.
+    Verbs are randomly selected from a list.
+    """
+
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the "
           "conditional present tense.\n")
     verb_good = False
@@ -335,6 +340,11 @@ def begin_conditionalpr_ire_quiz():
 
 
 def begin_conditionalpr_are_ere_quiz():
+    """
+    This function runs the present conditional tense quiz for -are, -ere verbs.
+    Verbs are randomly selected from a list.
+    """
+
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the "
           "present conditional tense"
           ".\n")
@@ -344,7 +354,11 @@ def begin_conditionalpr_are_ere_quiz():
     go_again = True
     while go_again:
         while not verb_good:
-            verb = random.choice(are_verb_options)
+            ere_or_are = random.randint(1, 3)
+            if ere_or_are == 1:
+                verb = random.choice(are_verb_options)
+            else:
+                verb = random.choice(ere_verb_options)
             checker = functions.verb_ending_good(verb)
             if checker is True:
                 verb_good = True
@@ -354,7 +368,7 @@ def begin_conditionalpr_are_ere_quiz():
             if pronoun in pronouns:
                 pronoun_good = True
         ending = functions.verb_ending(verb)
-        if ending == "are":
+        if ending == "are" or "ere":
             answer = are_ere_conditionalpr_quiz(verb, pronoun)
             checker = input(f'Tense: Condizionale Presente \nVerb: {verb} \nPronoun: {pronoun}...\n')
             if answer == checker:
@@ -370,6 +384,11 @@ def begin_conditionalpr_are_ere_quiz():
 
 
 def begin_congiuntivoimp_are_quiz():
+    """
+    This function runs the subjunctive imperfect quiz for -are verbs.
+    Verbs are randomly selected from a list.
+    """
+
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the imperfect "
           "subjunctive tense"
           ".\n")
@@ -407,6 +426,7 @@ def begin_congiuntivoimp_are_quiz():
 def begin_future_are_ere_quiz():
     """
     This function does the future tense quiz for -are, -ere verbs.
+    Verbs are randomly selected from a list.
 
     """
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the future "
@@ -445,9 +465,9 @@ def begin_future_are_ere_quiz():
 
 def begin_future_ire_quiz():
     """
-        This function runs the quiz for -ire verbs in the future tense.
-        Verbs are randomly selected from a list.
-        """
+    This function runs the quiz for -ire verbs in the future tense.
+    Verbs are randomly selected from a list.
+    """
 
     print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the future "
           "tense"
@@ -545,21 +565,49 @@ def ire_imperfect_quiz(verb, pronoun):
 
 
 def are_ere_conditionalpr_quiz(verb, pronoun):
+    """
+    This function is used by the -are, -ere present conditional
+    quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
     return functions.conjugate_conditionalpr_are_ere_verb(verb, pronoun, "condizionale")
 
 
 def ire_conditionalpr_quiz(verb, pronoun):
+    """
+    This function is used by the -ire present conditional
+    quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
     return functions.conjugate_conditionalpr_ire_verb(verb, pronoun, "condizionale")
 
 
 def are_congiuntivoimp_quiz(verb, pronoun):
+    """
+    This function is used by the -are imperfect subjunctive
+    quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
     return functions.conjugate_conjunctiveimp_are_verb(verb, pronoun, "congiuntivo")
 
 
 def are_ere_future_quiz(verb, pronoun):
+    """
+    This function is used by the -are, -ere future quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
     return functions.conjugate_future_are_ere_verb(verb, pronoun, "futuro")
 
 
 def ire_future_quiz(verb, pronoun):
+    """
+    This function is used by the -ire future quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
     return functions.conjugate_future_ire_verb(verb, pronoun, "futuro")
 
