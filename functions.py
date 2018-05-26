@@ -447,28 +447,28 @@ def conjugate_conditionalpr_ire_verb(verb, pronoun, tense):
     return new_verb
 
 
-# present conjunctive tense
+# present subjunctive tense
 
 
-def display_conjunctivepr_are_verb():
+def display_subjunctivepr_are_verb():
     endings = {"io": "-i", "tu": "-i", "lei": "-i", "lui": "-i", "noi": "-iamo", "voi": "-iate", "loro": "-ino"}
     for keys in endings:
         print(f'{keys}: {endings[keys]}')
 
 
-def display_conjunctivepr_ere_verb():
+def display_subjunctivepr_ere_verb():
     endings = {"io": "-a", "tu": "-a", "lei": "-a", "lui": "-a", "noi": "-iamo", "voi": "-iate", "loro": "-ano"}
     for keys in endings:
         print(f'{keys}: {endings[keys]}')
 
 
-def display_conjunctivepr_ire_verb():
+def display_subjunctivepr_ire_verb():
     endings = {"io": "-a", "tu": "-a", "lei": "-a", "lui": "-a", "noi": "-iamo", "voi": "-iate", "loro": "-ano"}
     for keys in endings:
         print(f'{keys}: {endings[keys]}')
 
 
-def conjugate_conjunctivepr_ire_verb(verb, pronoun, tense):
+def conjugate_subjunctivepr_ire_verb(verb, pronoun, tense):
     if verb[-3:] != "ire":
         raise ValueError
 
@@ -486,7 +486,7 @@ def conjugate_conjunctivepr_ire_verb(verb, pronoun, tense):
         return new_verb
 
 
-def conjugate_conjunctivepr_are_verb(verb, pronoun, tense):
+def conjugate_subjunctivepr_are_verb(verb, pronoun, tense):
     are_endings = {"io": "i", "tu": "i", "lui": "i", "lei": "i", "noi": "iamo", "voi": "iate", "loro": "ino"}
     irregular_are = ["fare", "andare"]
     fare = {"io": "faccia", "tu": "faccia", "lei": "faccia", "lui": "faccia", "noi": "facciamo", "voi": "facciate",
@@ -510,7 +510,7 @@ def conjugate_conjunctivepr_are_verb(verb, pronoun, tense):
     return new_verb
 
 
-def conjugate_conjunctivepr_ere_verb(verb, pronoun, tense):
+def conjugate_subjunctivepr_ere_verb(verb, pronoun, tense):
     if verb[-3:] != "ere":
         raise ValueError
 
@@ -521,31 +521,31 @@ def conjugate_conjunctivepr_ere_verb(verb, pronoun, tense):
     return new_verb
 
 
-# imperfect conjunctive tense
+# imperfect subjunctive tense
 
 
-def display_conjunctiveimp_are_verb():
+def display_subjunctiveimp_are_verb():
     endings = {"io": "-assi", "tu": "-assi", "lei": "-asse", "lui": "-asse", "noi": "-assimo", "voi": "-aste",
                "loro": "-assero"}
     for keys in endings:
         print(f'{keys}: {endings[keys]}')
 
 
-def display_conjunctiveimp_ere_verb():
+def display_subjunctiveimp_ere_verb():
     endings = {"io": "-essi", "tu": "-essi", "lei": "-esse", "lui": "-esse", "noi": "-essimo", "voi": "-este",
                "loro": "-essero"}
     for keys in endings:
         print(f'{keys}: {endings[keys]}')
 
 
-def display_conjunctiveimp_ire_verb():
+def display_subjunctiveimp_ire_verb():
     endings = {"io": "-issi", "tu": "-issi", "lei": "-isse", "lui": "-isse", "noi": "-issimo", "voi": "-iste",
                "loro": "-issero"}
     for keys in endings:
         print(f'{keys}: {endings[keys]}')
 
 
-def conjugate_conjunctiveimp_are_verb(verb, pronoun, tense):
+def conjugate_subjunctiveimp_are_verb(verb, pronoun, tense):
     are_endings = {"io": "assi", "tu": "assi", "lui": "asse", "lei": "asse", "noi": "assimo", "voi": "aste",
                    "loro": "assero"}
     irregular_are = ["fare"]
@@ -566,7 +566,7 @@ def conjugate_conjunctiveimp_are_verb(verb, pronoun, tense):
     return new_verb
 
 
-def conjugate_conjunctiveimp_ere_verb(verb, pronoun, tense):
+def conjugate_subjunctiveimp_ere_verb(verb, pronoun, tense):
     ere_endings = {"io": "essi", "tu": "essi", "lei": "esse", "lui": "esse", "noi": "essimo", "voi": "este",
                    "loro": "essero"}
     irregular_verb = ["essere"]
@@ -584,7 +584,7 @@ def conjugate_conjunctiveimp_ere_verb(verb, pronoun, tense):
     return new_verb
 
 
-def conjugate_conjunctiveimp_ire_verb(verb, pronoun, tense):
+def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
     if verb[-3:] != "ire":
         raise ValueError
 

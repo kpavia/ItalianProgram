@@ -16,8 +16,9 @@ ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capi
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
 # TODO: create complete random quizzes for all tenses
 # TODO: update -are, -ere combined quizzes to select from both -are, -ere verbs
+# TODO: finish subjunctive -ere, -ire quizzes
 
-# random quizzes
+# comprehensive quizzes
 
 
 def random_present_quiz_selector():
@@ -60,6 +61,61 @@ def random_imperfect_quiz_selector():
             go_again = False
 
 
+def random_future_quiz_selector():
+    """
+    This function randomly selects the -are, -ere-, or -ire quiz and once the user decides not to continue, checks to
+    see if the user wants to try another verb type. If not, then the quiz ends.
+    """
+
+    go_again = True
+    while go_again:
+        number = random.randint(1, 2)
+        if number == 1:
+            begin_future_are_ere_quiz()
+        if number == 2:
+            begin_present_ire_quiz()
+        again = input("Continue? Y/N\n").lower()
+        if again == "n":
+            go_again = False
+
+
+def random_conditional_quiz_selector():
+    """
+    This function randomly selects the -are, -ere-, or -ire quiz and once the user decides not to continue, checks to
+    see if the user wants to try another verb type. If not, then the quiz ends.
+    """
+
+    go_again = True
+    while go_again:
+        number = random.randint(1, 2)
+        if number == 1:
+            begin_conditionalpr_are_ere_quiz()
+        if number == 2:
+            begin_conditionalpr_ire_quiz()
+        again = input("Continue? Y/N\n").lower()
+        if again == "n":
+            go_again = False
+
+
+def random_subjunctive_quiz_selector():
+    """
+    This function randomly selects the -are, -ere-, or -ire quiz and once the user decides not to continue, checks to
+    see if the user wants to try another verb type. If not, then the quiz ends.
+    """
+    # TODO: finish the -ere, -ire quizzes
+
+    go_again = True
+    while go_again:
+        number = random.randint(1, 3)
+        if number == 1:
+            begin_subjunctiveimp_are_quiz()
+        # if number == 2:
+        #     begin_subj
+        # if number == 3:
+        #     begin_present_ire_quiz()
+        again = input("Continue? Y/N\n").lower()
+        if again == "n":
+            go_again = False
 # quiz functions
 
 
@@ -354,7 +410,7 @@ def begin_conditionalpr_are_ere_quiz():
     go_again = True
     while go_again:
         while not verb_good:
-            ere_or_are = random.randint(1, 3)
+            ere_or_are = random.randint(1, 2)
             if ere_or_are == 1:
                 verb = random.choice(are_verb_options)
             else:
@@ -383,7 +439,7 @@ def begin_conditionalpr_are_ere_quiz():
             verb_good = False
 
 
-def begin_congiuntivoimp_are_quiz():
+def begin_subjunctiveimp_are_quiz():
     """
     This function runs the subjunctive imperfect quiz for -are verbs.
     Verbs are randomly selected from a list.
@@ -409,7 +465,7 @@ def begin_congiuntivoimp_are_quiz():
                 pronoun_good = True
         ending = functions.verb_ending(verb)
         if ending == "are":
-            answer = are_congiuntivoimp_quiz(verb, pronoun)
+            answer = are_subjunctiveimp_quiz(verb, pronoun)
             checker = input(f'Tense: Congiuntivo Imperfetto \nVerb: {verb} \nPronoun: {pronoun}...\n')
             if answer == checker:
                 print("Correct!")
@@ -584,14 +640,64 @@ def ire_conditionalpr_quiz(verb, pronoun):
     return functions.conjugate_conditionalpr_ire_verb(verb, pronoun, "condizionale")
 
 
-def are_congiuntivoimp_quiz(verb, pronoun):
+def are_subjunctiveimp_quiz(verb, pronoun):
     """
     This function is used by the -are imperfect subjunctive
     quiz function to call the conjugation functions from functions.py
     Parameters: verb is a string, pronoun is a string
     Returns: a string (the conjugated verb)
     """
-    return functions.conjugate_conjunctiveimp_are_verb(verb, pronoun, "congiuntivo")
+    return functions.conjugate_subjunctiveimp_are_verb(verb, pronoun, "congiuntivo")
+
+
+def ere_subjunctiveimp_quiz(verb, pronoun):
+    """
+    This function is used by the -ere imperfect subjunctive
+    quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
+    return functions.conjugate_subjunctiveimp_ere_verb(verb, pronoun, "congiuntivo")
+
+
+def ire_subjunctiveimp_quiz(verb, pronoun):
+    """
+    This function is used by the -ire imperfect subjunctive
+    quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
+    return functions.conjugate_subjunctiveimp_ire_verb(verb, pronoun, "congiuntivo")
+
+
+def are_subjunctivepr_quiz(verb, pronoun):
+    """
+    This function is used by the -ere imperfect subjunctive
+    quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
+    return functions.conjugate_subjunctivepr_ere_verb(verb, pronoun, "congiuntivo")
+
+
+def ere_subjunctivepr_quiz(verb, pronoun):
+    """
+    This function is used by the -ere imperfect subjunctive
+    quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
+    return functions.conjugate_subjunctivepr_ere_verb(verb, pronoun, "congiuntivo")
+
+
+def ire_subjunctivepr_quiz(verb, pronoun):
+    """
+    This function is used by the -ire imperfect subjunctive
+    quiz function to call the conjugation functions from functions.py
+    Parameters: verb is a string, pronoun is a string
+    Returns: a string (the conjugated verb)
+    """
+    return functions.conjugate_subjunctivepr_ere_verb(verb, pronoun, "congiuntivo")
 
 
 def are_ere_future_quiz(verb, pronoun):
