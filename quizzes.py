@@ -116,6 +116,8 @@ def random_subjunctive_quiz_selector():
         again = input("Continue? Y/N\n").lower()
         if again == "n":
             go_again = False
+
+
 # quiz functions
 
 
