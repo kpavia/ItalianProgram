@@ -5,6 +5,7 @@ These functions display conjugation endings. No quizzing functionality.
 
 # TODO: irregular verbs to fix: uscire, sedere, avere (check all tenses)
 # TODO: do all error handling in beginning of functions
+# TODO: cond. pr. to fix: conoscere
 
 
 def begin():

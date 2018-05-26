@@ -97,22 +97,24 @@ def random_conditional_quiz_selector():
             go_again = False
 
 
-def random_subjunctive_quiz_selector():
+def random_subjunctiveimp_quiz_selector():
     """
     This function randomly selects the -are, -ere-, or -ire quiz and once the user decides not to continue, checks to
     see if the user wants to try another verb type. If not, then the quiz ends.
     """
-    # TODO: finish the -ere, -ire quizzes
 
     go_again = True
     while go_again:
         number = random.randint(1, 3)
         if number == 1:
+            print(number)
             begin_subjunctiveimp_are_quiz()
-        # if number == 2:
-        #     begin_subj
-        # if number == 3:
-        #     begin_present_ire_quiz()
+        if number == 2:
+            print(number)
+            begin_subjunctiveimp_ere_quiz()
+        if number == 3:
+            print(number)
+            begin_subjunctiveimp_ire_quiz()
         again = input("Continue? Y/N\n").lower()
         if again == "n":
             go_again = False
@@ -706,7 +708,7 @@ def begin_future_are_ere_quiz():
             if pronoun in pronouns:
                 pronoun_good = True
         ending = functions.verb_ending(verb)
-        if ending == "are":
+        if ending == "are" or "ere":
             answer = are_ere_future_quiz(verb, pronoun)
             checker = input(f'Tense: Futuro \nVerb: {verb} \nPronoun: {pronoun}...\n')
             if answer == checker:
@@ -918,4 +920,7 @@ def ire_future_quiz(verb, pronoun):
     Returns: a string (the conjugated verb)
     """
     return functions.conjugate_future_ire_verb(verb, pronoun, "futuro")
+
+
+random_subjunctiveimp_quiz_selector()
 
