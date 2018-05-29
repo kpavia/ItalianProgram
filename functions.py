@@ -117,6 +117,13 @@ def strip_off_ending(verb, pronoun, tense):
             raise TypeError
 
 
+def record_api_calls():
+    file = open("api_calls.txt", "w")
+    add_one = True
+    if add_one:
+        
+
+
 # present tense
 
 def create_verb_file(verb, tense):
