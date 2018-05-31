@@ -6,9 +6,9 @@ tenses = ["presente", "imperfetto", "futuro", "condizionale presente", "condizio
 are_verb_options = ["mangiare", "lavorare", "andare", "fare", "caminare", "abandonare", "portare", "cambiare",
                     "contare", "tagliare", "disegnare", "guidare", "spiegare", "trovare", "ritornare", "imparare",
                     "guardare", "organizzare", "pagare", "giocare", "ascoltare", "cantare", "fumare", "parlare",
-                    "chiamare", "pensare"]
+                    "chiamare", "pensare", "cominciare", "iniziare", "selezzionare"]
 ere_verb_options = ["scrivere", "leggere", "prendere", "chiedere", "decidere", "conoscere", "mettere", "vincere",
-                    "perdere", "credere", "sedere"]
+                    "perdere", "credere", "sedere", "scegliere"]
 ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capire", "offrire", "seguire", "construire",
                     "aprire", "sentire", "uscire", "salire"]
 
@@ -107,13 +107,10 @@ def random_subjunctiveimp_quiz_selector():
     while go_again:
         number = random.randint(1, 3)
         if number == 1:
-            print(number)
             begin_subjunctiveimp_are_quiz()
         if number == 2:
-            print(number)
             begin_subjunctiveimp_ere_quiz()
         if number == 3:
-            print(number)
             begin_subjunctiveimp_ire_quiz()
         again = input("Continue? Y/N\n").lower()
         if again == "n":
@@ -922,5 +919,5 @@ def ire_future_quiz(verb, pronoun):
     return functions.conjugate_future_ire_verb(verb, pronoun, "futuro")
 
 
-random_subjunctiveimp_quiz_selector()
+random_conditional_quiz_selector()
 

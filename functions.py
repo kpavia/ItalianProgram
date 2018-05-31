@@ -3,10 +3,8 @@
 These functions display conjugation endings. No quizzing functionality.
 """
 
-# TODO: irregular verbs to fix: uscire, sedere, avere (check all tenses)
+# TODO: irregular verbs to fix: uscire, sedere, avere, scegliere, conoscere, pagare (check all tenses)
 # TODO: do all error handling in beginning of functions
-# TODO: cond. pr. to fix: conoscere
-
 
 def begin():
         verb = input("What verb do you want to conjugate?\n")
@@ -122,7 +120,6 @@ def api_call_tracker():
     """
     Keeps track of how many API calls are made. Must stay under 5,000/month.
     """
-    # variable to track calls
     calls = 0
 
     # try part: checks to see if the file exists. If it does, it'll read from it and set the calls variable to whatever
@@ -141,13 +138,14 @@ def api_call_tracker():
         file = open("api_tracker.txt", "w")
         file.write("1")
         file.close()
-        return None  # exits function early since there's no need to continue
+        print("API Calls: 1")
+        return None
 
-    calls += 1  # increments API calls
-    writeable_calls = str(calls)  # sets the data type to string so it can be written to the file
+    calls += 1
+    calls = str(calls)
 
-    file = open("api_tracker.txt", "w")  # opens the file in preparation for writing
-    file.write(writeable_calls)  # writes the new number to the file
+    file = open("api_tracker.txt", "w")
+    file.write(calls)
     print(f'API Calls: {calls}')
     file.close()
 
@@ -632,4 +630,5 @@ def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
     return new_verb
 
 
-api_call_tracker()
+# api_call_tracker()
+
