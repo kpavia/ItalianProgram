@@ -141,7 +141,6 @@ def api_call_tracker():
         file = open("api_tracker.txt", "w")
         file.write("1")
         file.close()
-        print("function exited early")
         return None  # exits function early since there's no need to continue
 
     calls += 1  # increments API calls
