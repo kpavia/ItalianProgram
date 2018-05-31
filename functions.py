@@ -117,7 +117,44 @@ def strip_off_ending(verb, pronoun, tense):
         except TypeError:
             raise TypeError
 
+
+def api_call_tracker():
+    """
+    Keeps track of how many API calls are made. Must stay under 5,000/month.
+    """
+    # variable to track calls
+    calls = 0
+
+    # try part: checks to see if the file exists. If it does, it'll read from it and set the calls variable to whatever
+    # number is read from the file.
+    # except part: if file is not found, it'll create the file and writes a 1 to it. This only should happen when the
+    # file is initially created when the first API call is made. That's why it's writing 1 to the file.
+    # the Except should be called only on the very first API call. The Try should be called for every API recording
+    # hereafter.
+    try:
+        file = open("api_tracker.txt", "r")
+        for item in file:
+            calls = int(item)
+        file.close()
+
+    except FileNotFoundError:
+        file = open("api_tracker.txt", "w")
+        file.write("1")
+        file.close()
+        print("function exited early")
+        return None  # exits function early since there's no need to continue
+
+    calls += 1  # increments API calls
+    writeable_calls = str(calls)  # sets the data type to string so it can be written to the file
+
+    file = open("api_tracker.txt", "w")  # opens the file in preparation for writing
+    file.write(writeable_calls)  # writes the new number to the file
+    print(f'API Calls: {calls}')
+    file.close()
+
+
 # present tense
+
 
 def create_verb_file(verb, tense):
     pronouns = ["io", "tu", "lui", "lei", "noi", "voi", "loro"]
@@ -595,3 +632,5 @@ def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
     new_verb = stripped_verb + ere_endings[pronoun]
     return new_verb
 
+
+api_call_tracker()
