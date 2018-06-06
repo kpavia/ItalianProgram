@@ -3,7 +3,7 @@
 These functions display conjugation endings. No quizzing functionality.
 """
 
-# TODO: irregular verbs to fix: uscire, sedere, avere, scegliere, conoscere, pagare (check all tenses)
+# TODO: irregular verbs to fix: sedere, avere, scegliere, conoscere, pagare (check all tenses)
 # TODO: do all error handling in beginning of functions
 
 
@@ -355,8 +355,8 @@ def conjugate_imperfect_ere_verb(verb, pronoun, tense):
 
 
 def conjugate_imperfect_ire_verb(verb, pronoun, tense):
-    ire_endings = {"io": "-ivo", "tu": "-ivi", "lei": "-iva", "lui": "-iva", "noi": "-ivamo", "voi": "-ivate",
-                   "loro": "-ivano"}
+    ire_endings = {"io": "ivo", "tu": "ivi", "lei": "iva", "lui": "iva", "noi": "ivamo", "voi": "ivate",
+                   "loro": "ivano"}
     stripped_verb = strip_off_ending(verb, pronoun, tense)
     new_verb = stripped_verb + ire_endings[pronoun]
     return new_verb
@@ -512,10 +512,15 @@ def conjugate_subjunctivepr_ire_verb(verb, pronoun, tense):
     if verb[-3:] != "ire":
         raise ValueError
 
+    uscire = {"io": "esca", "tu": "esca", "lei": "esca", "lui": "esca", "noi": "usciamo", "voi": "usciate",
+              "loro": "escano"}
     ire_endings = {"io": "a", "tu": "a", "lei": "a", "lui": "a", "noi": "iamo", "voi": "iate", "loro": "ano"}
     isco_endings = {"io": "isca", "tu": "isca", "lui": "isca", "lei": "isca", "noi": "iamo", "voi": "iate",
                     "loro": "iscano"}
     isco_verbs = ["capire", "finire", "pulire", "construire", "preferire", "obedire"]
+    irregular = ["uscire"]
+    if verb in irregular:
+        return uscire[pronoun]
     if verb in isco_verbs:
         stripped_verb = strip_off_ending(verb, pronoun, tense)
         new_verb = stripped_verb + isco_endings[pronoun]
@@ -637,4 +642,4 @@ def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
 
 
 # api_call_tracker()
-print(conjugate_present_ire_verb("uscire", "loro", "presente"))
+print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
