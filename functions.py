@@ -6,6 +6,7 @@ These functions display conjugation endings. No quizzing functionality.
 # TODO: irregular verbs to fix: uscire, sedere, avere, scegliere, conoscere, pagare (check all tenses)
 # TODO: do all error handling in beginning of functions
 
+
 def begin():
         verb = input("What verb do you want to conjugate?\n")
         is_verb = verb_ending(verb)  # get the verb ending; returns False if not a verb
@@ -244,10 +245,15 @@ def conjugate_present_ire_verb(verb, pronoun, tense):
     Error handling: checks to see if the verb ends in -ire, then checks to see if the verb is irregular
     Returns error message if one of those conditions is true
     """
+    uscire = {"io": "esco", "tu": "esci", "lei": "esce", "lui": "esce", "noi": "usciamo", "voi": "uscite",
+              "loro": "escono"}
     ire_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ite", "loro": "ono"}
     isco_endings = {"io": "isco", "tu": "isci", "lui": "isce", "lei": "isce", "noi": "iamo", "voi": "ite",
                     "loro": "iscono"}
     isco_verbs = ["capire", "finire", "pulire", "construire", "preferire", "obedire"]
+    irregular = ["uscire"]
+    if verb in irregular:
+        return uscire[pronoun]
     if verb in isco_verbs:
         stripped_verb = strip_off_ending(verb, pronoun, tense)
         new_verb = stripped_verb + isco_endings[pronoun]
@@ -631,4 +637,4 @@ def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
 
 
 # api_call_tracker()
-
+print(conjugate_present_ire_verb("uscire", "loro", "presente"))
