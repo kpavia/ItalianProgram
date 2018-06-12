@@ -919,5 +919,5 @@ def ire_future_quiz(verb, pronoun):
     return functions.conjugate_future_ire_verb(verb, pronoun, "futuro")
 
 
-random_conditional_quiz_selector()
+# random_conditional_quiz_selector()
 

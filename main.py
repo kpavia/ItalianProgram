@@ -38,4 +38,12 @@ english_italian_url = "http://api.collinsdictionary.com/api/v1/dictionaries/engl
 
 # functions.create_verb_file("fare", "presente")
 
+def api_call():
+    functions.api_call_tracker()
+    call = requests.get(italian_english_url + "italian-english")
+    print(call)
+    print("done")
+
+
+api_call()
 
