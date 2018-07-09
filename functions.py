@@ -677,9 +677,59 @@ def review_verb(verb):
         for pronoun in pronouns:
             conditional = conjugate_conditionalpr_are_ere_verb(verb, pronoun, "condizionale")
             print(f'{pronoun} {conditional}')
+    if ending == "ere":
+        print(f'{verb} present tense\n' + '********')
+        for pronoun in pronouns:
+            present = conjugate_present_ere_verb(verb, pronoun, "presente")
+            print(f'{pronoun} {present}')
+        print('\n' + f'{verb} imperfect tense\n' + '********')
+        for pronoun in pronouns:
+            imperfect = conjugate_imperfect_ere_verb(verb, pronoun, "imperfetto")
+            print(f'{pronoun} {imperfect}')
+        print('\n' + f'{verb} future tense\n' + '********')
+        for pronoun in pronouns:
+            future = conjugate_future_are_ere_verb(verb, pronoun, "futuro")
+            print(f'{pronoun} {future}')
+        print('\n' + f'{verb} subjunctive present tense\n' + '********')
+        for pronoun in pronouns:
+            subjpr = conjugate_subjunctivepr_ere_verb(verb, pronoun, "congiuntivopr")
+            print(f'{pronoun} {subjpr}')
+        print('\n' + f'{verb} subjunctive imperfect tense\n' + '********')
+        for pronoun in pronouns:
+            subjimp = conjugate_subjunctiveimp_ere_verb(verb, pronoun, "congiuntivoimp")
+            print(f'{pronoun} {subjimp}')
+        print('\n' + f'{verb} conditional present tense\n' + '********')
+        for pronoun in pronouns:
+            conditional = conjugate_conditionalpr_are_ere_verb(verb, pronoun, "condizionale")
+            print(f'{pronoun} {conditional}')
+    if ending == "ire":
+        print(f'{verb} present tense\n' + '********')
+        for pronoun in pronouns:
+            present = conjugate_present_ire_verb(verb, pronoun, "presente")
+            print(f'{pronoun} {present}')
+        print('\n' + f'{verb} imperfect tense\n' + '********')
+        for pronoun in pronouns:
+            imperfect = conjugate_imperfect_ire_verb(verb, pronoun, "imperfetto")
+            print(f'{pronoun} {imperfect}')
+        print('\n' + f'{verb} future tense\n' + '********')
+        for pronoun in pronouns:
+            future = conjugate_future_ire_verb(verb, pronoun, "futuro")
+            print(f'{pronoun} {future}')
+        print('\n' + f'{verb} subjunctive present tense\n' + '********')
+        for pronoun in pronouns:
+            subjpr = conjugate_subjunctivepr_ire_verb(verb, pronoun, "congiuntivopr")
+            print(f'{pronoun} {subjpr}')
+        print('\n' + f'{verb} subjunctive imperfect tense\n' + '********')
+        for pronoun in pronouns:
+            subjimp = conjugate_subjunctiveimp_ire_verb(verb, pronoun, "congiuntivoimp")
+            print(f'{pronoun} {subjimp}')
+        print('\n' + f'{verb} conditional present tense\n' + '********')
+        for pronoun in pronouns:
+            conditional = conjugate_conditionalpr_ire_verb(verb, pronoun, "condizionale")
+            print(f'{pronoun} {conditional}')
 
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-review_verb("mancare")
+review_verb("vincere")
 
