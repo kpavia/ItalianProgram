@@ -8,7 +8,7 @@ are_verb_options = ["mangiare", "lavorare", "andare", "fare", "caminare", "aband
                     "guardare", "organizzare", "pagare", "giocare", "ascoltare", "cantare", "fumare", "parlare",
                     "chiamare", "pensare", "cominciare", "iniziare", "selezzionare"]
 ere_verb_options = ["scrivere", "leggere", "prendere", "chiedere", "decidere", "conoscere", "mettere", "vincere",
-                    "perdere", "credere", "sedere", "scegliere"]
+                    "perdere", "credere", "sedere", "scegliere", "compiere"]
 ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capire", "offrire", "seguire", "construire",
                     "aprire", "sentire", "uscire", "salire"]
 

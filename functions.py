@@ -534,6 +534,7 @@ def conjugate_subjunctivepr_ire_verb(verb, pronoun, tense):
 def conjugate_subjunctivepr_are_verb(verb, pronoun, tense):
     are_endings = {"io": "i", "tu": "i", "lui": "i", "lei": "i", "noi": "iamo", "voi": "iate", "loro": "ino"}
     irregular_are = ["fare", "andare"]
+    add_h = {"io": "hi", "tu": "hi", "lui": "hi", "lei": "hi", "noi": "hiamo", "voi": "hiate", "loro": "hino"}
     fare = {"io": "faccia", "tu": "faccia", "lei": "faccia", "lui": "faccia", "noi": "facciamo", "voi": "facciate",
             "loro": "facciano"}
     andare = {"io": "vada", "tu": "vada", "lui": "vada", "lei": "vada", "noi": "andiamo", "voi": "andiate",
@@ -550,9 +551,14 @@ def conjugate_subjunctivepr_are_verb(verb, pronoun, tense):
     # if it's a verb like mancare then the if section adds an "h" for the spelling to preserve hard "k" sound
     # if it's a normal -are verb, then the else section conjugates it normally
 
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
-    new_verb = stripped_verb + are_endings[pronoun]
-    return new_verb
+    if verb[-4] == "c":
+        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        new_verb = stripped_verb + add_h[pronoun]
+        return new_verb
+    else:
+        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        new_verb = stripped_verb + are_endings[pronoun]
+        return new_verb
 
 
 def conjugate_subjunctivepr_ere_verb(verb, pronoun, tense):
@@ -641,5 +647,39 @@ def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
     return new_verb
 
 
+# test functions
+
+def review_verb(verb):
+    ending = verb_ending(verb)
+    pronouns = ["io", "tu", "lei", "lui", "noi", "voi", "loro"]
+    if ending == "are":
+        print(f'{verb} present tense\n' + '********')
+        for pronoun in pronouns:
+            present = conjugate_present_are_verb(verb, pronoun, "presente")
+            print(f'{pronoun} {present}')
+        print('\n' + f'{verb} imperfect tense\n' + '********')
+        for pronoun in pronouns:
+            imperfect = conjugate_imperfect_are_verb(verb, pronoun, "imperfetto")
+            print(f'{pronoun} {imperfect}')
+        print('\n' + f'{verb} future tense\n' + '********')
+        for pronoun in pronouns:
+            future = conjugate_future_are_ere_verb(verb, pronoun, "futuro")
+            print(f'{pronoun} {future}')
+        print('\n' + f'{verb} subjunctive present tense\n' + '********')
+        for pronoun in pronouns:
+            subjpr = conjugate_subjunctivepr_are_verb(verb, pronoun, "congiuntivopr")
+            print(f'{pronoun} {subjpr}')
+        print('\n' + f'{verb} subjunctive imperfect tense\n' + '********')
+        for pronoun in pronouns:
+            subjimp = conjugate_subjunctiveimp_are_verb(verb, pronoun, "congiuntivoimp")
+            print(f'{pronoun} {subjimp}')
+        print('\n' + f'{verb} conditional present tense\n' + '********')
+        for pronoun in pronouns:
+            conditional = conjugate_conditionalpr_are_ere_verb(verb, pronoun, "condizionale")
+            print(f'{pronoun} {conditional}')
+
+
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
+review_verb("mancare")
+
