@@ -97,7 +97,7 @@ def strip_off_ending(verb, pronoun, tense):
         raise ValueError
     else:
         try:
-            pronouns = ["io", "lei", "lui", "voi", "loro"]
+            pronouns = ["io", "lei", "lui", "voi", "loro", "noi"]
             if verb == "mangiare":
                 if tense == "imperfetto":
                     return verb[:-3]
@@ -459,15 +459,27 @@ def conjugate_conditionalpr_are_ere_verb(verb, pronoun, tense):
         else:
             return andare[pronoun]
 
-    # normal conjugation section
-    if verb[-4] == "c":
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
-        new_verb = stripped_verb + add_h[pronoun]
-        return new_verb
-    else:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
-        new_verb = stripped_verb + endings[pronoun]
-        return new_verb
+    # normal conjugation section for -are
+    if verb[-3:] == "are":
+        if verb[-4] == "c":
+            stripped_verb = strip_off_ending(verb, pronoun, tense)
+            new_verb = stripped_verb + add_h[pronoun]
+            return new_verb
+        else:
+            stripped_verb = strip_off_ending(verb, pronoun, tense)
+            new_verb = stripped_verb + endings[pronoun]
+            return new_verb
+
+    # normal conjugation section for -ere
+    if verb[-3:] == "ere":
+        if verb[-4] == "c":
+            stripped_verb = strip_off_ending(verb, pronoun, tense)
+            new_verb = stripped_verb + add_h[pronoun]
+            return new_verb
+        else:
+            stripped_verb = strip_off_ending(verb, pronoun, tense)
+            new_verb = stripped_verb + endings[pronoun]
+            return new_verb
 
 
 def conjugate_conditionalpr_ire_verb(verb, pronoun, tense):
@@ -731,5 +743,6 @@ def review_verb(verb):
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-review_verb("vincere")
+review_verb("leggere")
+# print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
 
