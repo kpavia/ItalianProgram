@@ -5,6 +5,8 @@ These functions display conjugation endings. No quizzing functionality.
 
 # TODO: irregular verbs to fix: sedere, avere, scegliere, conoscere, pagare (check all tenses)
 # TODO: do all error handling in beginning of functions
+# TODO: check all verb conjugating functions for bugs using review_verb()
+# TODO: ^ tenses that are checked g2g: present
 
 
 def begin():
@@ -48,6 +50,7 @@ def print_verb_dict(verb):
         print(f'{keys}: {verb[keys]}')
 
 
+# consider deleting this since it duplicates verb_ending()
 def verb_ending_good(verb):
     """
     Returns the last 3 characters of the verb to determine the verb type
@@ -72,7 +75,7 @@ def verb_ending(verb):
     Verb is passed in as a string
     Error handling checks to make sure the verb is a string data type and that it's actually a verb
     and not some other word
-    Returns: a boolean, True if a verb or False if not a verb
+    Returns: the verb's ending if a verb or False if not a verb
     """
     try:
         is_verb = verb[-3:]
@@ -92,23 +95,21 @@ def strip_off_ending(verb, pronoun, tense):
     Error handling: checks to make sure parameter is a verb and not just a word
     Returns an error message if that condition is true
     """
+
+    # checks to make sure that the verb is actually a verb
     ending = verb_ending(verb)
     if ending is False:
         raise ValueError
     else:
         try:
             pronouns = ["io", "lei", "lui", "voi", "loro", "noi"]
-            if verb == "mangiare":
-                if tense == "imperfetto":
+            if verb[-5:] == "giare":
+                if tense == "imperfetto" or tense == "congiuntivoimp":
                     return verb[:-3]
-                if tense == "futuro":
+                else:
                     return verb[:-4]
-                if tense == "condizionale":
-                    return verb[:-4]
-                if tense == "congiuntivopr":
-                    return verb[:-4]
-                if tense == "congiuntivoimp":
-                    return verb[:-3]
+            if verb[-5:] == "ciare":
+                return verb[:-3]
             if verb[-4] == "i" and pronoun not in pronouns:
                 return verb[:-4]
             else:
@@ -189,6 +190,8 @@ def conjugate_present_are_verb(verb, pronoun, tense):
     """
 
     are_endings = {"io": "o", "tu": "i", "lui": "a", "lei": "a", "noi": "iamo", "voi": "ate", "loro": "ano"}
+    giare_endings = {"io": "io", "tu": "i", "lui": "ia", "lei": "ia", "noi": "iamo", "voi": "iate", "loro": "iano"}
+    ciare_endings = {"io": "o", "tu": "", "lui": "a", "lei": "a", "noi": "amo", "voi": "ate", "loro": "ano"}
     add_h = {"io": "o", "tu": "hi", "lui": "a", "lei": "a", "noi": "hiamo", "voi": "ate", "loro": "ano"}
     irregular_are = ["fare", "andare"]
     fare = {"io": "faccio", "tu": "fai", "lei": "fa", "lui": "fa", "noi": "facciamo", "voi": "fate", "loro": "fanno"}
@@ -206,7 +209,15 @@ def conjugate_present_are_verb(verb, pronoun, tense):
     # this section checks for spelling issues like with mancare in order to preserve hard "k" sound of infinitive
     # if it's a verb like mancare then the if section adds an "h" for the spelling to preserve hard "k" sound
     # if it's a normal -are verb, then the else section conjugates it normally
-    if verb[-4] == "c":
+    if verb[-5:] == "giare":
+        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        new_verb = stripped_verb + giare_endings[pronoun]
+        return new_verb
+    if verb[-5:] == "ciare":
+        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        new_verb = stripped_verb + ciare_endings[pronoun]
+        return new_verb
+    if verb[-4:] == "care":
         stripped_verb = strip_off_ending(verb, pronoun, tense)
         new_verb = stripped_verb + add_h[pronoun]
         return new_verb
@@ -743,6 +754,6 @@ def review_verb(verb):
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-review_verb("leggere")
+review_verb("fare")
 # print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
 
