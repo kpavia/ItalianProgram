@@ -6,7 +6,7 @@ These functions display conjugation endings. No quizzing functionality.
 # TODO: irregular verbs to fix: sedere, avere, scegliere, conoscere, pagare (check all tenses)
 # TODO: do all error handling in beginning of functions
 # TODO: check all verb conjugating functions for bugs using review_verb()
-# TODO: ^ tenses that are checked g2g: present
+# TODO: ^ tenses that are checked g2g: -are: present, imperfect
 
 
 def begin():
@@ -102,17 +102,15 @@ def strip_off_ending(verb, pronoun, tense):
         raise ValueError
     else:
         try:
-            pronouns = ["io", "lei", "lui", "voi", "loro", "noi"]
-            if verb[-5:] == "giare":
-                if tense == "imperfetto" or tense == "congiuntivoimp":
+            if ending == "are":
+                if verb[-5:] == "giare":
+                    if tense == "imperfetto" or tense == "congiuntivoimp":
+                        return verb[:-3]
+                    else:
+                        return verb[:-4]
+                if verb[-5:] == "ciare":
                     return verb[:-3]
-                else:
-                    return verb[:-4]
-            if verb[-5:] == "ciare":
-                return verb[:-3]
-            if verb[-4] == "i" and pronoun not in pronouns:
-                return verb[:-4]
-            else:
+            if ending == "ere" or ending == "ire":
                 return verb[:-3]
         except TypeError:
             raise TypeError
@@ -754,6 +752,6 @@ def review_verb(verb):
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-review_verb("fare")
+review_verb("cominciare")
 # print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
 
