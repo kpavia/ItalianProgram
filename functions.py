@@ -87,7 +87,7 @@ def verb_ending(verb):
         raise TypeError
 
 
-def strip_off_ending(verb, pronoun, tense):
+def strip_off_ending(verb, tense):
     """
     Strips the ending (last 3 characters) off the verb
     Parameters: accepts a string
