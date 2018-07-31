@@ -87,7 +87,7 @@ def verb_ending(verb):
         raise TypeError
 
 
-def strip_off_ending(verb, pronoun, tense):
+def strip_off_ending(verb, tense):
     """
     Strips the ending (last 3 characters) off the verb
     Parameters: accepts a string
@@ -200,29 +200,27 @@ def conjugate_present_are_verb(verb, pronoun, tense):
     # this section checks for the irregular verbs fare, andare
     if verb in irregular_are:
         if verb == "fare":
-            # print(fare[pronoun])
             return fare[pronoun]
         else:
-            # print(andare[pronoun])
             return andare[pronoun]
 
     # this section checks for spelling issues like with mancare in order to preserve hard "k" sound of infinitive
     # if it's a verb like mancare then the if section adds an "h" for the spelling to preserve hard "k" sound
     # if it's a normal -are verb, then the else section conjugates it normally
     if verb[-5:] == "giare":
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + giare_endings[pronoun]
         return new_verb
     if verb[-5:] == "ciare":
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + ciare_endings[pronoun]
         return new_verb
     if verb[-4:] == "care":
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + add_h[pronoun]
         return new_verb
     else:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + are_endings[pronoun]
         return new_verb
 
@@ -243,7 +241,7 @@ def conjugate_present_ere_verb(verb, pronoun, tense):
             return avere[pronoun]
 
     ere_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ete", "loro": "ono"}
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ere_endings[pronoun]
     return new_verb
 
@@ -266,11 +264,11 @@ def conjugate_present_ire_verb(verb, pronoun, tense):
     if verb in irregular:
         return uscire[pronoun]
     if verb in isco_verbs:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + isco_endings[pronoun]
         return new_verb
     else:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + ire_endings[pronoun]
         return new_verb
 
@@ -352,7 +350,7 @@ def conjugate_imperfect_are_verb(verb, pronoun, tense):
     # if it's a verb like mancare then the if section adds an "h" for the spelling to preserve hard "k" sound
     # if it's a normal -are verb, then the else section conjugates it normally
 
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + are_endings[pronoun]
     return new_verb
 
@@ -360,7 +358,7 @@ def conjugate_imperfect_are_verb(verb, pronoun, tense):
 def conjugate_imperfect_ere_verb(verb, pronoun, tense):
     ere_endings = {"io": "evo", "tu": "evi", "lei": "eva", "lui": "eva", "noi": "evamo", "voi": "evate",
                    "loro": "evano"}
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ere_endings[pronoun]
     return new_verb
 
@@ -368,7 +366,7 @@ def conjugate_imperfect_ere_verb(verb, pronoun, tense):
 def conjugate_imperfect_ire_verb(verb, pronoun, tense):
     ire_endings = {"io": "ivo", "tu": "ivi", "lei": "iva", "lui": "iva", "noi": "ivamo", "voi": "ivate",
                    "loro": "ivano"}
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ire_endings[pronoun]
     return new_verb
 
@@ -410,11 +408,11 @@ def conjugate_future_are_ere_verb(verb, pronoun, tense):
 
     # normal conjugation section
     if verb[-4] == "c":
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + add_h[pronoun]
         return new_verb
     else:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + endings[pronoun]
         return new_verb
 
@@ -423,7 +421,7 @@ def conjugate_future_ire_verb(verb, pronoun, tense):
     ire_endings = {"io": "irò", "tu": "irai", "lei": "irà", "lui": "irà", "noi": "iremo", "voi": "irete",
                    "loro": "iranno"}
 
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ire_endings[pronoun]
     return new_verb
 
@@ -473,22 +471,22 @@ def conjugate_conditionalpr_are_ere_verb(verb, pronoun, tense):
     # normal conjugation section for -are
     if verb[-3:] == "are":
         if verb[-4] == "c":
-            stripped_verb = strip_off_ending(verb, pronoun, tense)
+            stripped_verb = strip_off_ending(verb, tense)
             new_verb = stripped_verb + add_h[pronoun]
             return new_verb
         else:
-            stripped_verb = strip_off_ending(verb, pronoun, tense)
+            stripped_verb = strip_off_ending(verb, tense)
             new_verb = stripped_verb + endings[pronoun]
             return new_verb
 
     # normal conjugation section for -ere
     if verb[-3:] == "ere":
         if verb[-4] == "c":
-            stripped_verb = strip_off_ending(verb, pronoun, tense)
+            stripped_verb = strip_off_ending(verb, tense)
             new_verb = stripped_verb + add_h[pronoun]
             return new_verb
         else:
-            stripped_verb = strip_off_ending(verb, pronoun, tense)
+            stripped_verb = strip_off_ending(verb, tense)
             new_verb = stripped_verb + endings[pronoun]
             return new_verb
 
@@ -505,7 +503,7 @@ def conjugate_conditionalpr_ire_verb(verb, pronoun, tense):
     ire_endings = {"io": "irei", "tu": "iresti", "lei": "irebbe", "lui": "irebbe", "noi": "iremmo", "voi": "ireste",
                    "loro": "irebbero"}
 
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ire_endings[pronoun]
     return new_verb
 
@@ -545,11 +543,11 @@ def conjugate_subjunctivepr_ire_verb(verb, pronoun, tense):
     if verb in irregular:
         return uscire[pronoun]
     if verb in isco_verbs:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + isco_endings[pronoun]
         return new_verb
     else:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + ire_endings[pronoun]
         return new_verb
 
@@ -575,11 +573,11 @@ def conjugate_subjunctivepr_are_verb(verb, pronoun, tense):
     # if it's a normal -are verb, then the else section conjugates it normally
 
     if verb[-4] == "c":
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + add_h[pronoun]
         return new_verb
     else:
-        stripped_verb = strip_off_ending(verb, pronoun, tense)
+        stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + are_endings[pronoun]
         return new_verb
 
@@ -590,7 +588,7 @@ def conjugate_subjunctivepr_ere_verb(verb, pronoun, tense):
 
     ere_endings = {"io": "a", "tu": "a", "lei": "a", "lui": "a", "noi": "iamo", "voi": "iate", "loro": "ano"}
 
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ere_endings[pronoun]
     return new_verb
 
@@ -635,7 +633,7 @@ def conjugate_subjunctiveimp_are_verb(verb, pronoun, tense):
     # if it's a verb like mancare then the if section adds an "h" for the spelling to preserve hard "k" sound
     # if it's a normal -are verb, then the else section conjugates it normally
 
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + are_endings[pronoun]
     return new_verb
 
@@ -653,7 +651,7 @@ def conjugate_subjunctiveimp_ere_verb(verb, pronoun, tense):
         if verb == "essere":
             return essere[pronoun]
 
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ere_endings[pronoun]
     return new_verb
 
@@ -665,7 +663,7 @@ def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
     ere_endings = {"io": "issi", "tu": "issi", "lei": "isse", "lui": "isse", "noi": "issimo", "voi": "iste",
                    "loro": "issero"}
 
-    stripped_verb = strip_off_ending(verb, pronoun, tense)
+    stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ere_endings[pronoun]
     return new_verb
 
@@ -756,6 +754,6 @@ def review_verb(verb):
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-review_verb("parlare")
+review_verb("partire")
 # print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
 
