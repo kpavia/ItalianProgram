@@ -109,7 +109,11 @@ def strip_off_ending(verb, tense):
                     else:
                         return verb[:-4]
                 if verb[-5:] == "ciare":
-                    return verb[:-3]
+                    tenses = ["futuro", "congiuntivopr", "condizionale"]
+                    if tense in tenses:
+                        return verb[:-4]
+                    else:
+                        return verb[:-3]
                 else:
                     return verb[:-3]
             if ending == "ere" or ending == "ire":
@@ -407,7 +411,7 @@ def conjugate_future_are_ere_verb(verb, pronoun, tense):
             return andare[pronoun]
 
     # normal conjugation section
-    if verb[-4] == "c":
+    if verb[-4:] == "care":
         stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + add_h[pronoun]
         return new_verb
