@@ -87,7 +87,7 @@ def verb_ending(verb):
         raise TypeError
 
 
-def strip_off_ending(verb, tense):
+def strip_off_ending(verb, pronoun, tense):
     """
     Strips the ending (last 3 characters) off the verb
     Parameters: accepts a string
@@ -109,6 +109,8 @@ def strip_off_ending(verb, tense):
                     else:
                         return verb[:-4]
                 if verb[-5:] == "ciare":
+                    return verb[:-3]
+                else:
                     return verb[:-3]
             if ending == "ere" or ending == "ire":
                 return verb[:-3]
@@ -672,6 +674,8 @@ def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
 
 def review_verb(verb):
     ending = verb_ending(verb)
+    if not ending:
+        raise ValueError
     pronouns = ["io", "tu", "lei", "lui", "noi", "voi", "loro"]
     if ending == "are":
         print(f'{verb} present tense\n' + '********')
@@ -752,6 +756,6 @@ def review_verb(verb):
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-review_verb("cominciare")
+review_verb("parlare")
 # print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
 
