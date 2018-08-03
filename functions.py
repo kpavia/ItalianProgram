@@ -485,14 +485,9 @@ def conjugate_conditionalpr_are_ere_verb(verb, pronoun, tense):
 
     # normal conjugation section for -ere
     if verb[-3:] == "ere":
-        if verb[-4] == "c":
-            stripped_verb = strip_off_ending(verb, tense)
-            new_verb = stripped_verb + add_h[pronoun]
-            return new_verb
-        else:
-            stripped_verb = strip_off_ending(verb, tense)
-            new_verb = stripped_verb + endings[pronoun]
-            return new_verb
+        stripped_verb = strip_off_ending(verb, tense)
+        new_verb = stripped_verb + endings[pronoun]
+        return new_verb
 
 
 def conjugate_conditionalpr_ire_verb(verb, pronoun, tense):
@@ -758,6 +753,6 @@ def review_verb(verb):
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-review_verb("partire")
+review_verb("leggere")
 # print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
 

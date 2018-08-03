@@ -6,11 +6,14 @@ tenses = ["presente", "imperfetto", "futuro", "condizionale presente", "condizio
 are_verb_options = ["mangiare", "lavorare", "andare", "fare", "caminare", "abandonare", "portare", "cambiare",
                     "contare", "tagliare", "disegnare", "guidare", "spiegare", "trovare", "ritornare", "imparare",
                     "guardare", "organizzare", "pagare", "giocare", "ascoltare", "cantare", "fumare", "parlare",
-                    "chiamare", "pensare", "cominciare", "iniziare", "selezzionare"]
+                    "chiamare", "pensare", "cominciare", "iniziare", "selezzionare", "abitare", "abbracciare",
+                    "abbandonare", "comprare"]
 ere_verb_options = ["scrivere", "leggere", "prendere", "chiedere", "decidere", "conoscere", "mettere", "vincere",
-                    "perdere", "credere", "sedere", "scegliere", "compiere"]
+                    "perdere", "credere", "sedere", "scegliere", "compiere", "accendere", "comprendere", "muovere",
+                    "descrivere", "dipendere", "discutere"]
 ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capire", "offrire", "seguire", "construire",
-                    "aprire", "sentire", "uscire", "salire"]
+                    "aprire", "sentire", "uscire", "salire", "arrostire", "asserire", "assortire", "chiarire",
+                    "colorire", "definire", "disubbidire", "fiorire"]
 
 
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
