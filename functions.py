@@ -377,6 +377,24 @@ def conjugate_imperfect_ere_verb(verb, pronoun, tense):
 
 
 def conjugate_imperfect_ire_verb(verb, pronoun, tense):
+    """
+    Conjugates -ire verbs in the imperfect tense.
+    Raises a type error if the verb parameter isn't an -ire verb.
+    :param verb: string, should be a -ire verb
+    :param pronoun: string
+    :param tense: string
+    :return: A string object, the conjugated verb
+    """
+
+    ending = verb_ending(verb)
+    if ending != "ire":
+        raise TypeError
+    irregulars = ["dire"]
+    dire = {"io": "dicevo", "tu": "dicevi", "lui": "diceva", "lei": "diceva", "noi": "dicevamo", "voi": "dicevate",
+            "loro": "dicevano"}
+    if verb in irregulars:
+        if verb == "dire":
+            return dire[pronoun]
     ire_endings = {"io": "ivo", "tu": "ivi", "lei": "iva", "lui": "iva", "noi": "ivamo", "voi": "ivate",
                    "loro": "ivano"}
     stripped_verb = strip_off_ending(verb, tense)
@@ -437,6 +455,18 @@ def conjugate_future_are_ere_verb(verb, pronoun, tense):
 
 
 def conjugate_future_ire_verb(verb, pronoun, tense):
+    """
+    Conjugates -ire verbs in the future tense.
+    Raises a type error if the verb parameters isn't an -ire verb.
+    :param verb: string, -ire verb
+    :param pronoun: string
+    :param tense: string
+    :return: Returns the conjugated verb as a string.
+    """
+
+    ending = verb_ending(verb)
+    if ending != "ire":
+        raise TypeError
     ire_endings = {"io": "irò", "tu": "irai", "lei": "irà", "lui": "irà", "noi": "iremo", "voi": "irete",
                    "loro": "iranno"}
 
@@ -544,18 +574,24 @@ def display_subjunctivepr_ire_verb():
 
 
 def conjugate_subjunctivepr_ire_verb(verb, pronoun, tense):
-    if verb[-3:] != "ire":
-        raise ValueError
+    ending = verb_ending(verb)
+    if ending != "ire":
+        raise TypeError
 
     uscire = {"io": "esca", "tu": "esca", "lei": "esca", "lui": "esca", "noi": "usciamo", "voi": "usciate",
               "loro": "escano"}
+    dire = {"io": "dica", "tu": "dica", "lei": "dica", "lui": "dica", "noi": "diciamo", "voi": "diciate",
+            "loro": "dicano"}
     ire_endings = {"io": "a", "tu": "a", "lei": "a", "lui": "a", "noi": "iamo", "voi": "iate", "loro": "ano"}
     isco_endings = {"io": "isca", "tu": "isca", "lui": "isca", "lei": "isca", "noi": "iamo", "voi": "iate",
                     "loro": "iscano"}
     isco_verbs = ["capire", "finire", "pulire", "construire", "preferire", "obedire"]
-    irregular = ["uscire"]
-    if verb in irregular:
-        return uscire[pronoun]
+    irregulars = ["uscire", "dire"]
+    if verb in irregulars:
+        if verb == "uscire":
+            return uscire[pronoun]
+        if verb == "dire":
+            return dire[pronoun]
     if verb in isco_verbs:
         stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + isco_endings[pronoun]
@@ -671,12 +707,19 @@ def conjugate_subjunctiveimp_ere_verb(verb, pronoun, tense):
 
 
 def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
-    if verb[-3:] != "ire":
-        raise ValueError
+    ending = verb_ending(verb)
+    if ending != "ire":
+        raise TypeError
 
     ere_endings = {"io": "issi", "tu": "issi", "lei": "isse", "lui": "isse", "noi": "issimo", "voi": "iste",
                    "loro": "issero"}
+    irregulars = ["dire"]
+    dire = {"io": "dicessi", "tu": "dicessi", "lei": "dicesse", "lui": "dicesse", "noi": "dicessimo", "voi": "diceste",
+            "loro": "dicessero"}
 
+    if verb in irregulars:
+        if verb == "dire":
+            return dire[pronoun]
     stripped_verb = strip_off_ending(verb, tense)
     new_verb = stripped_verb + ere_endings[pronoun]
     return new_verb
@@ -768,6 +811,6 @@ def review_verb(verb):
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-# review_verb("spiegare")
+# review_verb("dire")
 # print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
 
