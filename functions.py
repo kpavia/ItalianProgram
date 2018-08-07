@@ -264,13 +264,18 @@ def conjugate_present_ire_verb(verb, pronoun, tense):
     """
     uscire = {"io": "esco", "tu": "esci", "lei": "esce", "lui": "esce", "noi": "usciamo", "voi": "uscite",
               "loro": "escono"}
+    dire = {"io": "dico", "tu": "dici", "lui": "dice", "lei": "dice", "noi": "diciamo", "voi": "dite",
+            "loro": "dicono"}
     ire_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ite", "loro": "ono"}
     isco_endings = {"io": "isco", "tu": "isci", "lui": "isce", "lei": "isce", "noi": "iamo", "voi": "ite",
                     "loro": "iscono"}
     isco_verbs = ["capire", "finire", "pulire", "construire", "preferire", "obedire"]
-    irregular = ["uscire"]
+    irregular = ["uscire", "dire"]
     if verb in irregular:
-        return uscire[pronoun]
+        if verb == "usicre":
+            return uscire[pronoun]
+        if verb == "dire":
+            return dire[pronoun]
     if verb in isco_verbs:
         stripped_verb = strip_off_ending(verb, tense)
         new_verb = stripped_verb + isco_endings[pronoun]
