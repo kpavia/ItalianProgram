@@ -13,7 +13,7 @@ ere_verb_options = ["scrivere", "leggere", "prendere", "chiedere", "decidere", "
                     "descrivere", "dipendere", "discutere"]
 ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capire", "offrire", "seguire", "construire",
                     "aprire", "sentire", "uscire", "salire", "arrostire", "asserire", "assortire", "chiarire",
-                    "colorire", "definire", "disubbidire", "fiorire"]
+                    "colorire", "definire", "disubbidire", "fiorire", "dire"]
 
 
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
