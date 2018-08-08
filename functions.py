@@ -116,7 +116,12 @@ def strip_off_ending(verb, tense):
                         return verb[:-3]
                 else:
                     return verb[:-3]
-            if ending == "ere" or ending == "ire":
+            if ending == "ere":
+                if verb == "compiere" and tense in ["presente", "imperfetto"]:
+                    return verb[:-3]
+                else:
+                    return verb[:-3]
+            if ending == "ire":
                 return verb[:-3]
         except TypeError:
             raise TypeError
@@ -249,9 +254,21 @@ def conjugate_present_ere_verb(verb, pronoun, tense):
             return avere[pronoun]
 
     ere_endings = {"io": "o", "tu": "i", "lui": "e", "lei": "e", "noi": "iamo", "voi": "ete", "loro": "ono"}
-    stripped_verb = strip_off_ending(verb, tense)
-    new_verb = stripped_verb + ere_endings[pronoun]
-    return new_verb
+    compiere_endings = {"io": "o", "tu": "", "lei": "e", "lui": "e", "noi": "amo", "voi": "ete", "loro": "ono"}
+
+    if verb == "compiere":
+        if tense == "presente":
+            stripped_verb = strip_off_ending(verb, tense)
+            new_verb = stripped_verb + compiere_endings[pronoun]
+            return new_verb
+        else:
+            stripped_verb = strip_off_ending(verb, tense)
+            new_verb = stripped_verb + ere_endings[pronoun]
+            return new_verb
+    else:
+        stripped_verb = strip_off_ending(verb, tense)
+        new_verb = stripped_verb + ere_endings[pronoun]
+        return new_verb
 
 
 def conjugate_present_ire_verb(verb, pronoun, tense):
@@ -371,9 +388,17 @@ def conjugate_imperfect_are_verb(verb, pronoun, tense):
 def conjugate_imperfect_ere_verb(verb, pronoun, tense):
     ere_endings = {"io": "evo", "tu": "evi", "lei": "eva", "lui": "eva", "noi": "evamo", "voi": "evate",
                    "loro": "evano"}
-    stripped_verb = strip_off_ending(verb, tense)
-    new_verb = stripped_verb + ere_endings[pronoun]
-    return new_verb
+    compiere_endings = {"io": "vo", "tu": "vi", "lei": "va", "lui": "va", "noi": "vamo", "voi": "vate",
+                        "loro": "vano"}
+
+    if verb == "compiere":
+        stripped_verb = strip_off_ending(verb, tense)
+        new_verb = stripped_verb + compiere_endings[pronoun]
+        return new_verb
+    else:
+        stripped_verb = strip_off_ending(verb, tense)
+        new_verb = stripped_verb + ere_endings[pronoun]
+        return new_verb
 
 
 def conjugate_imperfect_ire_verb(verb, pronoun, tense):
@@ -422,20 +447,25 @@ def display_future_ire_endings():
 def conjugate_future_are_ere_verb(verb, pronoun, tense):
     endings = {"io": "erò", "tu": "erai", "lei": "erà", "lui": "erà", "noi": "eremo", "voi": "erete",
                "loro": "eranno"}
-    irregular_are = ["fare", "andare"]
+    irregular_are = ["fare", "andare", "compiere"]
     add_h = {"io": "herò", "tu": "herai", "lui": "herà", "lei": "herà", "noi": "heremo", "voi": "herete",
              "loro": "heranno"}
     fare = {"io": "farò", "tu": "farai", "lei": "farà", "lui": "farà", "noi": "faremo", "voi": "farete",
             "loro": "faranno"}
     andare = {"io": "andrò", "tu": "andrai", "lui": "andrà", "lei": "andrà", "noi": "andremo", "voi": "andrete",
               "loro": "andranno"}
+    compiere = {"io": "rò", "tu": "rai", "lei": "rà", "lui": "rà", "noi": "remo", "voi": "rete", "loro": "ranno"}
 
     # this section checks for the irregular verbs fare, andare
     if verb in irregular_are:
         if verb == "fare":
             return fare[pronoun]
-        else:
+        elif verb == "andare":
             return andare[pronoun]
+        elif verb == "compiere":
+            stripped_verb = strip_off_ending(verb, tense)
+            new_verb = stripped_verb + compiere[pronoun]
+            return new_verb
 
     # normal conjugation section
     is_verb = verb_ending(verb)
@@ -502,6 +532,8 @@ def conjugate_conditionalpr_are_ere_verb(verb, pronoun, tense):
         raise ValueError
     endings = {"io": "erei", "tu": "eresti", "lei": "erebbe", "lui": "erebbe", "noi": "eremmo", "voi": "ereste",
                "loro": "erebbero"}
+    compiere_endings = {"io": "rei", "tu": "resti", "lei": "rebbe", "lui": "rebbe", "noi": "remmo", "voi": "reste",
+                        "loro": "rebbero"}
     irregular_are = ["fare", "andare"]
     add_h = {"io": "herei", "tu": "heresti", "lui": "herebbe", "lei": "herebbe", "noi": "heremmo", "voi": "hereste",
              "loro": "herebbero"}
@@ -530,9 +562,14 @@ def conjugate_conditionalpr_are_ere_verb(verb, pronoun, tense):
 
     # normal conjugation section for -ere
     if verb[-3:] == "ere":
-        stripped_verb = strip_off_ending(verb, tense)
-        new_verb = stripped_verb + endings[pronoun]
-        return new_verb
+        if verb == "compiere":
+            stripped_verb = strip_off_ending(verb, tense)
+            new_verb = stripped_verb + compiere_endings[pronoun]
+            return new_verb
+        else:
+            stripped_verb = strip_off_ending(verb, tense)
+            new_verb = stripped_verb + endings[pronoun]
+            return new_verb
 
 
 def conjugate_conditionalpr_ire_verb(verb, pronoun, tense):
@@ -637,10 +674,16 @@ def conjugate_subjunctivepr_ere_verb(verb, pronoun, tense):
         raise ValueError
 
     ere_endings = {"io": "a", "tu": "a", "lei": "a", "lui": "a", "noi": "iamo", "voi": "iate", "loro": "ano"}
+    compiere_endings = {"io": "a", "tu": "a", "lei": "a", "lui": "a", "noi": "amo", "voi": "ate", "loro": "ano"}
 
-    stripped_verb = strip_off_ending(verb, tense)
-    new_verb = stripped_verb + ere_endings[pronoun]
-    return new_verb
+    if verb == "compiere":
+        stripped_verb = strip_off_ending(verb, tense)
+        new_verb = stripped_verb + compiere_endings[pronoun]
+        return new_verb
+    else:
+        stripped_verb = strip_off_ending(verb, tense)
+        new_verb = stripped_verb + ere_endings[pronoun]
+        return new_verb
 
 
 # imperfect subjunctive tense
@@ -691,7 +734,9 @@ def conjugate_subjunctiveimp_are_verb(verb, pronoun, tense):
 def conjugate_subjunctiveimp_ere_verb(verb, pronoun, tense):
     ere_endings = {"io": "essi", "tu": "essi", "lei": "esse", "lui": "esse", "noi": "essimo", "voi": "este",
                    "loro": "essero"}
-    irregular_verb = ["essere"]
+    compiere_endings = {"io": "ssi", "tu": "ssi", "lei": "sse", "lui": "sse", "noi": "ssimo", "voi": "ste",
+                        "loro": "ssero"}
+    irregular_verb = ["essere", "compiere"]
     essere = {"io": "fossi", "tu": "fossi", "lei": "fosse", "lui": "fosse", "noi": "fossimo", "voi": "foste",
               "loro": "fossero"}
 
@@ -700,10 +745,14 @@ def conjugate_subjunctiveimp_ere_verb(verb, pronoun, tense):
     if verb in irregular_verb:
         if verb == "essere":
             return essere[pronoun]
-
-    stripped_verb = strip_off_ending(verb, tense)
-    new_verb = stripped_verb + ere_endings[pronoun]
-    return new_verb
+        if verb == "compiere":
+            stripped_verb = strip_off_ending(verb, tense)
+            new_verb = stripped_verb + compiere_endings[pronoun]
+            return new_verb
+    else:
+        stripped_verb = strip_off_ending(verb, tense)
+        new_verb = stripped_verb + ere_endings[pronoun]
+        return new_verb
 
 
 def conjugate_subjunctiveimp_ire_verb(verb, pronoun, tense):
@@ -811,6 +860,6 @@ def review_verb(verb):
 
 # api_call_tracker()
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
-# review_verb("dire")
+# review_verb("compiere")
 # print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
 
