@@ -18,6 +18,7 @@ english_italian_url = "http://api.collinsdictionary.com/api/v1/dictionaries/engl
 
 # TODO: make functions that quiz on conjugations
 # TODO: need to conjugate irregular -ere, -ire verbs
+# TODO: fix mangiare imp subjunctive
 
 
 # just commented out for testing
