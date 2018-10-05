@@ -84,7 +84,7 @@ def verb_ending(verb):
         else:
             return False
     except TypeError:
-        raise TypeError
+        raise TypeError("Word doesn't have a proper verb ending")
 
 
 def strip_off_ending(verb, tense):
@@ -99,12 +99,12 @@ def strip_off_ending(verb, tense):
     # checks to make sure that the verb is actually a verb
     ending = verb_ending(verb)
     if ending is False:
-        raise ValueError
+        raise ValueError("Not a verb")
     else:
         try:
             if ending == "are":
                 if verb[-5:] == "giare":
-                    if tense == "imperfetto" or tense == "congiuntivoimp":
+                    if tense in ["imperfetto", "congiuntivoimp"]:
                         return verb[:-3]
                     else:
                         return verb[:-4]
@@ -862,4 +862,6 @@ def review_verb(verb):
 # print(conjugate_subjunctivepr_ire_verb("uscire", "loro", "presente"))
 # review_verb("compiere")
 # print(conjugate_conditionalpr_are_ere_verb("cambiare", "noi", "presente"))
+# review_verb('mangiare')
 
+print(conjugate_subjunctiveimp_are_verb('mangiare', 'loro', 'congiuntivoimp'))

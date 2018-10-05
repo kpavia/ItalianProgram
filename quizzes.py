@@ -926,5 +926,5 @@ def ire_future_quiz(verb, pronoun):
 
 # begin_conditionalpr_are_ere_quiz()
 
-begin_subjunctivepr_are_quiz()
+begin_subjunctiveimp_are_quiz()
 
