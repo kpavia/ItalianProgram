@@ -7,13 +7,13 @@ are_verb_options = ["mangiare", "lavorare", "andare", "fare", "caminare", "aband
                     "contare", "tagliare", "disegnare", "guidare", "spiegare", "trovare", "ritornare", "imparare",
                     "guardare", "organizzare", "pagare", "giocare", "ascoltare", "cantare", "fumare", "parlare",
                     "chiamare", "pensare", "cominciare", "iniziare", "selezzionare", "abitare", "abbracciare",
-                    "abbandonare", "comprare"]
+                    "abbandonare", "comprare", "colorare"]
 ere_verb_options = ["scrivere", "leggere", "prendere", "chiedere", "decidere", "conoscere", "mettere", "vincere",
                     "perdere", "credere", "sedere", "scegliere", "compiere", "accendere", "comprendere", "muovere",
                     "descrivere", "dipendere", "discutere"]
 ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capire", "offrire", "seguire", "construire",
                     "aprire", "sentire", "uscire", "salire", "arrostire", "asserire", "assortire", "chiarire",
-                    "colorire", "definire", "disubbidire", "fiorire", "dire"]
+                    "definire", "disubbidire", "fiorire", "dire"]
 
 
 # TODO: create logger to record progress (incorrect answers, correct answers, most common missed ones, etc.)
@@ -926,5 +926,6 @@ def ire_future_quiz(verb, pronoun):
 
 # begin_conditionalpr_are_ere_quiz()
 
-begin_subjunctiveimp_are_quiz()
+# begin_subjunctiveimp_are_quiz()
 
+random_subjunctiveimp_quiz_selector()
