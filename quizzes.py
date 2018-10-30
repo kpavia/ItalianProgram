@@ -928,4 +928,4 @@ def ire_future_quiz(verb, pronoun):
 
 # begin_subjunctiveimp_are_quiz()
 
-random_subjunctiveimp_quiz_selector()
+random_imperfect_quiz_selector()
