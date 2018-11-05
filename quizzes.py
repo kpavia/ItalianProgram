@@ -20,6 +20,7 @@ ire_verb_options = ["finire", "pulire", "partire", "dormire", "costruire", "capi
 # TODO: create complete random quizzes for all tenses
 # TODO: update -are, -ere combined quizzes to select from both -are, -ere verbs
 # TODO: finish subjunctive -ere, -ire quizzes
+# TODO: something wrong with subjunctive present -are cambiare, tu cambii
 
 # comprehensive quizzes
 
@@ -569,7 +570,7 @@ def begin_subjunctivepr_are_quiz():
     Verbs are randomly selected from a list.
     """
 
-    print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the imperfect "
+    print("Get ready for a quiz.\nInstructions: You'll be shown a verb and a pronoun. Conjugate it in the present "
           "subjunctive tense"
           ".\n")
     verb_good = False
@@ -881,7 +882,7 @@ def are_subjunctivepr_quiz(verb, pronoun):
     Parameters: verb is a string, pronoun is a string
     Returns: a string (the conjugated verb)
     """
-    return functions.conjugate_subjunctivepr_ere_verb(verb, pronoun, "congiuntivo")
+    return functions.conjugate_subjunctivepr_are_verb(verb, pronoun, "congiuntivo")
 
 
 def ere_subjunctivepr_quiz(verb, pronoun):
@@ -922,10 +923,4 @@ def ire_future_quiz(verb, pronoun):
     return functions.conjugate_future_ire_verb(verb, pronoun, "futuro")
 
 
-# random_conditional_quiz_selector()
-
-# begin_conditionalpr_are_ere_quiz()
-
-# begin_subjunctiveimp_are_quiz()
-
-random_imperfect_quiz_selector()
+begin_subjunctivepr_are_quiz()
