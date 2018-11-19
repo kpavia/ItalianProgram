@@ -7,7 +7,7 @@ are_verb_options = ["mangiare", "lavorare", "andare", "fare", "caminare", "aband
                     "contare", "tagliare", "disegnare", "guidare", "spiegare", "trovare", "ritornare", "imparare",
                     "guardare", "organizzare", "pagare", "giocare", "ascoltare", "cantare", "fumare", "parlare",
                     "chiamare", "pensare", "cominciare", "iniziare", "selezzionare", "abitare", "abbracciare",
-                    "abbandonare", "comprare", "colorare"]
+                    "abbandonare", "comprare", "colorare", "ripassare", "festeggiare"]
 ere_verb_options = ["scrivere", "leggere", "prendere", "chiedere", "decidere", "conoscere", "mettere", "vincere",
                     "perdere", "credere", "sedere", "scegliere", "compiere", "accendere", "comprendere", "muovere",
                     "descrivere", "dipendere", "discutere"]
